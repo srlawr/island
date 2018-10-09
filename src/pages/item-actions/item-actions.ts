@@ -2,10 +2,10 @@ import {Component} from "@angular/core";
 import {NavController, NavParams} from 'ionic-angular';
 
 @Component({
-  selector: 'item-details',
-  templateUrl: 'item-details.html'
+  selector: 'item-actions',
+  templateUrl: 'item-actions.html'
 })
-export class ItemDetailsPage {
+export class ItemActionsPage {
 
     
 }

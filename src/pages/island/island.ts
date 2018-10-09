@@ -1,34 +1,38 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams} from 'ionic-angular';
-import {ItemDetailsPage} from '../item-details/item-details';
 
+import { TileModalPage } from '../tile-modal/tile-modal';
+import { ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'island',
   templateUrl: 'island.html'
 })
+
 export class Island {
   selectedItem: any;
-  icons: string[];
-  items: Array<{ title: string, note: string, icon: string }>;
+  island: string[][];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-      'american-football', 'boat', 'bluetooth', 'build'];
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public modalCtrl : ModalController) {
+    console.log('Loading Island page');
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    this.island = [ ['00','01','02','03','04'],
+                    ['05','06','07','08','09'],
+                    ['10','11','12','13','14'],
+                    ['15','16','17','18','19'],
+                    ['20','21','22','23','24']];
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
+  tileTapped(event, tile) {
+    console.log("You tapped " + tile);
+    
   }
+
+  public openTileModal(tile) { 
+    var modalPage = this.modalCtrl.create(TileModalPage, { tileid : tile });
+    modalPage.present();
+  }
+
 }

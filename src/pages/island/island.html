@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-title>Island Escape</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="turnCol">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              Turn
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              1
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              Left
+            </ion-col>
+            <ion-col>
+              -
+            </ion-col>
+            <ion-col>
+              Right
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+
+            </ion-col>
+            <ion-col>
+              [combine]
+            </ion-col>
+            <ion-col>
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              [action]
+            </ion-col>
+            <ion-col>
+
+            </ion-col>
+            <ion-col>
+              [action]
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col class="mapCol">
+        Map
+        <ion-grid>
+          <ion-row *ngFor="let row of island">
+            <ion-col *ngFor="let cell of row" (click)="tileTapped($event, cell); openTileModal(cell)" class="mapCell">
+              {{cell}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col>
+          <ion-grid>
+              <ion-row>
+                <ion-col>
+                  Raft Completion
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  ???
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                    16%
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
