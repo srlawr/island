@@ -11,11 +11,17 @@
     <ion-buttons end>
     <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
-</ion-navbar>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <span *ngFor="let resource of resources" (click)="pickup($event, resource)">
+
+    {{ resource }}
+
+  </span>
 
 </ion-content>

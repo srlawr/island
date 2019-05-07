@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams} from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { TileModalPage } from '../tile-modal/tile-modal';
 import { ModalController } from 'ionic-angular';
@@ -15,24 +16,26 @@ export class Island {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public modalCtrl : ModalController) {
+              public modalCtrl : ModalController,
+              storage: Storage) {
     console.log('Loading Island page');
 
-    this.island = [ ['00','01','02','03','04'],
-                    ['05','06','07','08','09'],
-                    ['10','11','12','13','14'],
-                    ['15','16','17','18','19'],
-                    ['20','21','22','23','24']];
+    storage.get('grid').then((val) => {
+      this.island = val;
+    });
+
   }
 
   tileTapped(event, tile) {
-    console.log("You tapped " + tile);
+    console.log("You tapped " + tile.id);
     
   }
 
   public openTileModal(tile) { 
-    var modalPage = this.modalCtrl.create(TileModalPage, { tileid : tile });
-    modalPage.present();
+    //var modalPage = this.modalCtrl.create(TileModalPage, { tiledata : tile });
+    //modalPage.present();
+    //console.log("pushing page");
+    this.navCtrl.push(TileModalPage, { tiledata : tile });
   }
 
 }

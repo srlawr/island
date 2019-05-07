@@ -61,7 +61,7 @@
         <ion-grid>
           <ion-row *ngFor="let row of island">
             <ion-col *ngFor="let cell of row" (click)="tileTapped($event, cell); openTileModal(cell)" class="mapCell">
-              {{cell}}
+              {{cell.type}}
             </ion-col>
           </ion-row>
         </ion-grid>

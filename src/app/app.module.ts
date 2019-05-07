@@ -6,7 +6,10 @@ import { MyApp } from './app.component';
 import { Home } from '../pages/home/home';
 import { Island } from '../pages/island/island';
 import { TileModalPage } from '../pages/tile-modal/tile-modal';
+
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
+  ],
+  exports: [
   ],
   bootstrap: [IonicApp],
   entryComponents: [
