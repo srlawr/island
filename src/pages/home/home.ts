@@ -18,7 +18,7 @@ export class Home {
     storage.set('grid', [ [ new Tile('00', 'beach', [ 'wood', 'tinder' ]),
                             new Tile('01', 'beach', [ 'vine' ]),
                             new Tile('02', 'beach', [ 'sand', 'salt' ]),
-                            new Tile('03', 'beach', []),
+                            new Tile('03', 'beach', [ 'wood' ]),
                             new Tile('04', 'beach', [])
                           ],
                           [
