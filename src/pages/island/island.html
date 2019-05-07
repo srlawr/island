@@ -7,7 +7,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col class="turnCol">
+      <ion-col col-3 class="turnCol">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -19,45 +19,24 @@
               1
             </ion-col>
           </ion-row>
-        </ion-grid>
-        <ion-grid>
           <ion-row>
             <ion-col>
-              Left
-            </ion-col>
-            <ion-col>
-              -
-            </ion-col>
-            <ion-col>
-              Right
+              Hut Button
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-
-            </ion-col>
-            <ion-col>
-              [combine]
-            </ion-col>
-            <ion-col>
-
+              Inventory Button
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              [action]
-            </ion-col>
-            <ion-col>
-
-            </ion-col>
-            <ion-col>
-              [action]
+              Raft Button
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col class="mapCol">
-        Map
+      <ion-col col-9 class="mapCol">
         <ion-grid>
           <ion-row *ngFor="let row of island">
             <ion-col *ngFor="let cell of row" (click)="tileTapped($event, cell); openTileModal(cell)" class="mapCell">
@@ -65,25 +44,6 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      </ion-col>
-      <ion-col>
-          <ion-grid>
-              <ion-row>
-                <ion-col>
-                  Raft Completion
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  ???
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                  <ion-col>
-                    16%
-                  </ion-col>
-                </ion-row>
-            </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>
