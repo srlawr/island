@@ -15,10 +15,10 @@ export class Home {
   constructor(public navCtrl: NavController, storage: Storage) {
     console.log("home.ts loaded");
 
-    storage.set('grid', [ [ new Tile('00', 'beach', [ 'wood', 'tinder' ]),
-                            new Tile('01', 'beach', [ 'vine' ]),
-                            new Tile('02', 'beach', [ 'sand', 'salt' ]),
-                            new Tile('03', 'beach', [ 'wood' ]),
+    storage.set('grid', [ [ new Tile('00', 'beach', [ { item : 'wood', 'qty' : 2 }, { item : 'tinder', 'qty' : 5 } ]),
+                            new Tile('01', 'beach', [ { item : 'vine', 'qty' : 8 } ]),
+                            new Tile('02', 'beach', [ { item : 'sand', 'qty' : 1000 }, { item : 'salt', 'qty' : 1000 } ]),
+                            new Tile('03', 'beach', [ { item : 'wood', 'qty' :3 } ]),
                             new Tile('04', 'beach', [])
                           ],
                           [
@@ -51,7 +51,7 @@ export class Home {
                          ]]
                          );
 
-    storage.set('inventory', []);
+    storage.set("inventory", {});
 
   }
 

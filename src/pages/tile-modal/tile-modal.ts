@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Tile } from '../../app/models/tile';
 
 /**
  * Generated class for the TileModalPage page.
@@ -17,8 +18,10 @@ import { Storage } from '@ionic/storage';
 
 export class TileModalPage {
 
-  public tiledata;
-  private resources: string[];
+  private grid: [][];
+  public tiledata: Tile;
+  private resources: {}[];
+  private storage: any;
 
   constructor(public navCtrl: NavController, 
               public viewCtrl : ViewController, 
@@ -26,26 +29,50 @@ export class TileModalPage {
               storage: Storage) {
 
     this.tiledata = this.navParams.get('tiledata');
+    this.storage = storage;
 
-    storage.get('grid').then((val) => {
-      this.resources = this.tiledata.resources;
-      console.log('resource', this.resources);
+    storage.get('grid').then((wholegrid) => {
+      this.grid = wholegrid;
     });
+
+    this.resources = this.tiledata.resources;
 
   }
 
   ionViewDidLoad() {
-    console.log("We are on ", this.navParams.get('tileid'));
-    
+    console.log('We are on ', this.navParams.get('tiledata').type);
   }
 
   public pickup(event, resource) {
-    console.log("Picked up", resource);
 
+    console.log('Picked up', resource.item);
+
+    if(resource.qty > 0) {
+      this.storage.get('inventory').then((inventory) => {
+
+        if(inventory[resource.item] === undefined) {
+          inventory[resource.item] = 1;
+        } else {
+          inventory[resource.item] = inventory[resource.item] + 1;
+        }
+        resource.qty--;
+        this.storage.set('inventory', inventory);
+        
+        if(resource.qty === 0) {
+          this.resources = this.resources.filter(function( obj ) {
+                              return obj.item !== resource.item;
+                           });
+        }
+
+        //this.storage.set('grid', this.grid);
+
+        console.log(inventory);
+      });
+    }
   }
 
   public closeModal(){
-    this.viewCtrl.dismiss();
+      this.viewCtrl.dismiss();
   }
 
 }
