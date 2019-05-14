@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Location {{ tileId }}</ion-title>
+    <ion-title>Location {{ tiledata.id }}</ion-title>
     <ion-buttons end>
     <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -17,6 +17,8 @@
 
 
 <ion-content padding>
+
+  <p>Visiting the {{ tiledata.type }}</p>
 
   <span *ngFor="let resource of resources" (click)="pickup($event, resource)">
 
