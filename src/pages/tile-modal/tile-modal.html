@@ -22,7 +22,9 @@
 
   <span *ngFor="let resource of resources" (click)="pickup($event, resource)">
 
-    {{ resource.item }} ( {{ resource.qty }} ) 
+    <span class="{{ resource.qty == 0 ? 'zero' : 'some' }}">
+      {{ resource.item }} ( {{ resource.qty }} ) 
+    </span>
 
   </span>
 

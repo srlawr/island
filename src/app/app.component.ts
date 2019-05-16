@@ -24,45 +24,54 @@ export class MyApp {
       //splashScreen.hide();
       console.log(this.screenOrientation.type);
 
-      storage.set('grid', [ [ new Tile('00', 'beach', [ { item : 'wood', 'qty' : 3 }, { item : 'tinder', 'qty' : 5 } ]),
-                            new Tile('01', 'beach', [ { item : 'vine', 'qty' : 8 } ]),
-                            new Tile('02', 'beach', [ { item : 'sand', 'qty' : 1000 }, { item : 'salt', 'qty' : 1000 } ]),
-                            new Tile('03', 'beach', [ { item : 'wood', 'qty' :3 } ]),
-                            new Tile('04', 'beach', [])
-                          ],
-                          [
-                            new Tile('05', 'beach', []),
-                            new Tile('06', 'woods', []),
-                            new Tile('07', 'woods', []),
-                            new Tile('08', 'grass', []),
-                            new Tile('09', 'beach', [])
-                          ],
-                          [
-                            new Tile('10', 'beach', []),
-                            new Tile('11', 'woods', []),
-                            new Tile('12', 'hut', []),
-                            new Tile('13', 'water', []),
-                            new Tile('14', 'beach', [])
-                          ],
-                          [
-                            new Tile('15', 'beach', []),
-                            new Tile('16', 'woods', []),
-                            new Tile('17', 'grass', []),
-                            new Tile('18', 'water', []),
-                            new Tile('19', 'beach', [])
-                          ],
-                          [
-                            new Tile('20', 'beach', []),
-                            new Tile('21', 'beach', []),
-                            new Tile('22', 'beach', []),
-                            new Tile('23', 'jetty', []),
-                            new Tile('24', 'beach', [])
-                         ]]
-                         );
+      storage.get('turntime').then((turntime) => {
+          console.log(turntime);
+        if(turntime !== null) {
 
-      storage.set("inventory", {});
-      
-      console.log("data setup");
+            // we are mid game....
+            console.log("Game in progress", storage.get('turntime'));
+
+        } else {
+
+          storage.set('turntime', 1);
+
+          console.log("data setup");
+
+          storage.set('grid', { "00": new Tile('00', 0, 0, 'beach', [ { item : 'wood', qty : 2 }, { item : 'tinder', qty : 5 } ]),
+                                "01": new Tile('01', 0, 1, 'beach', [ { item : 'vine', qty : 8 } ]),
+                                "02": new Tile('02', 0, 2, 'beach', [ { item : 'sand', qty : 1000 }, { item : 'salt', qty : 1000 } ]),
+                                "03": new Tile('03', 0, 3, 'beach', [ { item : 'wood', qty :3 } ]),
+                                "04": new Tile('04', 0, 4, 'beach', []),
+                            
+                                "10": new Tile('10', 1, 0, 'beach', []),
+                                "11": new Tile('11', 1, 1, 'woods', []),
+                                "12": new Tile('12', 1, 2, 'woods', []),
+                                "13": new Tile('13', 1, 3, 'grass', []),
+                                "14": new Tile('14', 1, 4, 'beach', []),
+
+                                "20": new Tile('10', 2, 0, 'beach', []),
+                                "21": new Tile('11', 2, 1, 'woods', []),
+                                "22": new Tile('12', 2, 2, 'hut', []),
+                                "23": new Tile('13', 2, 3, 'water', []),
+                                "24": new Tile('14', 2, 4, 'beach', []),
+
+                                "30": new Tile('15', 3, 0, 'beach', []),
+                                "31": new Tile('16', 3, 1, 'woods', []),
+                                "32": new Tile('17', 3, 2, 'grass', []),
+                                "33": new Tile('18', 3, 3, 'water', []),
+                                "34": new Tile('19', 3, 4, 'beach', []),
+
+                                "40": new Tile('20', 4, 0, 'beach', []),
+                                "41": new Tile('21', 4, 1, 'beach', []),
+                                "42": new Tile('22', 4, 2, 'beach', []),
+                                "43": new Tile('23', 4, 3, 'jetty', []),
+                                "44": new Tile('24', 5, 3, 'beach', [])
+                              });
+
+          storage.set("inventory", {});
+        }
+
+      });
 
       if (!platform.is('core')){
         // Mobile devices, hopefully?

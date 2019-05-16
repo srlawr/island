@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Tile } from '../../app/models/tile';
+import { TileResource } from '../../app/models/tileResource';
 
 /**
  * Generated class for the TileModalPage page.
@@ -18,7 +19,7 @@ import { Tile } from '../../app/models/tile';
 
 export class TileModalPage {
 
-  private grid: any;
+  public grid: Tile[];
   public tiledata: Tile;
   private resources: {}[];
   private storage: any;
@@ -28,12 +29,12 @@ export class TileModalPage {
               public navParams: NavParams,
               storage: Storage) {
 
+    storage.get("grid").then((loadedGrid) => {
+      this.grid =  loadedGrid;
+    });
+
     this.tiledata = this.navParams.get('tiledata');
     this.storage = storage;
-
-    storage.get('grid').then((wholegrid) => {
-      this.grid = wholegrid;
-    });
 
     this.resources = this.tiledata.resources;
 
@@ -57,14 +58,7 @@ export class TileModalPage {
         }
         resource.qty--;
         this.storage.set('inventory', inventory);
-        
-        if(resource.qty === 0) {
-          this.resources = this.resources.filter(function( obj ) {
-                              return obj.item !== resource.item;
-                           });
-        }
-
-        //this.storage.set('grid', this.grid);
+        this.storage.set('grid', this.grid);
 
         console.log(inventory);
       });
