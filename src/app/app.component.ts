@@ -22,10 +22,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       //statusBar.styleDefault();
       //splashScreen.hide();
-      console.log(this.screenOrientation.type);
 
       storage.get('turntime').then((turntime) => {
-          console.log(turntime);
         if(turntime !== null) {
 
             // we are mid game....
