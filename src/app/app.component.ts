@@ -29,7 +29,7 @@ export class MyApp {
         if(turntime !== null) {
 
             // we are mid game....
-            console.log("Game in progress", storage.get('turntime'));
+            console.log("Game in progress", storage.get('turntime'), storage.get('grid'));
 
         } else {
 
@@ -81,7 +81,6 @@ export class MyApp {
           //desktop browser only code
       }
 
-      console.log("App loaded in app.component.ts");
     });
 
     //this.pages = [

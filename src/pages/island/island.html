@@ -38,9 +38,9 @@
       </ion-col>
       <ion-col col-9 class="mapCol">
         <ion-grid>
-          <ion-row *ngFor="let row of island">
-            <ion-col *ngFor="let cell of row" (click)="tileTapped($event, cell); openTileModal(cell)" class="mapCell">
-              {{cell.type}}
+          <ion-row *ngFor="let row of rowsControl">
+            <ion-col *ngFor="let cell of colsControl" (click)="tileTapped($event, island[row+''+cell]); openTileModal(island[row+''+cell])" class="mapCell">
+              {{ island[row+''+cell].type }}
             </ion-col>
           </ion-row>
         </ion-grid>

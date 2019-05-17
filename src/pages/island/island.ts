@@ -11,17 +11,23 @@ import { ModalController } from 'ionic-angular';
 })
 
 export class Island {
+
+  rowsControl: Number[];
+  colsControl: Number[];
+
   selectedItem: any;
-  island: string[][];
+  island: {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl : ModalController,
               storage: Storage) {
-    console.log('Loading Island page');
 
     storage.get('grid').then((val) => {
       this.island = val;
+      // don't set these until the island has been loaded to stop the grid trying to draw
+      this.rowsControl = [0, 1, 2, 3, 4];
+      this.colsControl = [0, 1, 2, 3, 4];
     });
 
   }

@@ -19,7 +19,7 @@ import { TileResource } from '../../app/models/tileResource';
 
 export class TileModalPage {
 
-  public grid: Tile[];
+  public grid: {};
   public tiledata: Tile;
   private resources: {}[];
   private storage: any;
