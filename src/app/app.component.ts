@@ -66,7 +66,7 @@ export class MyApp {
                                 "44": new Tile('24', 5, 3, 'beach', [])
                               });
 
-          storage.set("inventory", {});
+          storage.set("inventory", []);
         }
 
       });

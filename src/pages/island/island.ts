@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { TileModalPage } from '../tile-modal/tile-modal';
+import { InventoryPage } from '../inventory/inventory';
 import { ModalController } from 'ionic-angular';
 
 @Component({
@@ -42,6 +43,10 @@ export class Island {
     //modalPage.present();
     //console.log("pushing page");
     this.navCtrl.push(TileModalPage, { tiledata : tile });
+  }
+
+  public showInventory() {
+    this.navCtrl.push(InventoryPage, { });
   }
 
 }
