@@ -58,6 +58,7 @@ export class TileModalPage {
         }
         resource.qty--;
         this.storage.set('inventory', inventory);
+        this.grid[this.tiledata.x+''+this.tiledata.y] = this.tiledata;
         this.storage.set('grid', this.grid);
 
         console.log(inventory);
