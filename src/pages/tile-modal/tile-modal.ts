@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
+
 import { Storage } from '@ionic/storage';
+
 import { Tile } from '../../app/models/tile';
 import { TileResource } from '../../app/models/tileResource';
-
-/**
- * Generated class for the TileModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Inventory } from '../../app/models/inventory';
 
 @IonicPage()
 @Component({
@@ -49,19 +45,19 @@ export class TileModalPage {
     console.log('Picked up', resource.item);
 
     if(resource.qty > 0) {
-      this.storage.get('inventory').then((inventory) => {
-
-        if(inventory[resource.item] === undefined) {
-          inventory[resource.item] = 1;
-        } else {
-          inventory[resource.item] = inventory[resource.item] + 1;
-        }
+      this.storage.get('inventory').then((inventory: Inventory) => {
+   
+        var invent = new Inventory(inventory.items);
+        
+        invent.addOne(resource.item);
         resource.qty--;
-        this.storage.set('inventory', inventory);
+
+        this.storage.set('inventory', invent);
+        
         this.grid[this.tiledata.x+''+this.tiledata.y] = this.tiledata;
         this.storage.set('grid', this.grid);
 
-        console.log(inventory);
+        console.log(invent);
       });
     }
   }

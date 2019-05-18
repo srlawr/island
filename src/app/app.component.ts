@@ -4,6 +4,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Storage } from '@ionic/storage';
 
 import { Tile } from '../app/models/tile';
+import { Inventory } from '../app/models/inventory';
+import { InventoryItem } from '../app/models/inventoryItem';
+
 
 import { Home } from '../pages/home/home';
 //import { Island } from '../pages/island/island';
@@ -16,7 +19,7 @@ export class MyApp {
   rootPage:any = Home;
   // pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform, public screenOrientation: ScreenOrientation, storage: Storage) {
+  constructor(platform: Platform, public screenOrientation: ScreenOrientation, public storage: Storage) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -24,6 +27,7 @@ export class MyApp {
       //splashScreen.hide();
 
       storage.get('turntime').then((turntime) => {
+        console.log('turntime', turntime);
         if(turntime !== null) {
 
             // we are mid game....
@@ -66,7 +70,7 @@ export class MyApp {
                                 "44": new Tile('24', 5, 3, 'beach', [])
                               });
 
-          storage.set("inventory", []);
+          storage.set("inventory", new Inventory(new Array<InventoryItem>()));
         }
 
       });
@@ -81,11 +85,7 @@ export class MyApp {
 
     });
 
-    //this.pages = [
-    //  { title: 'Home', component: HomePage },
-    //  { title: 'Island View', component: Island }
-    //];
-
   }
+
 }
 
