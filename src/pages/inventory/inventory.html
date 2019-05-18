@@ -19,12 +19,11 @@
 <ion-content padding>
 
   <p>What you got?</p>
-  {{inventory}}
   
-  <span *ngFor="let resource of inventory" >
-
-      {{ resource }}
-
+  <span *ngFor="let resource of inventory.items" >
+    <div>
+      {{ resource.item }} ({{ resource.qty }})
+    </div>
   </span>
 
 </ion-content>

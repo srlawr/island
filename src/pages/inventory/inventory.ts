@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { Inventory } from '../../app/models/inventory';
+import { InventoryItem } from '../../app/models/inventoryItem';
+
 /**
  * Generated class for the TileModalPage page.
  *
@@ -18,14 +21,17 @@ import { Storage } from '@ionic/storage';
 export class InventoryPage {
 
   private storage: any;
-  private inventory: [];
+  public inventory: Inventory;
 
   constructor(public navCtrl: NavController, 
               public viewCtrl : ViewController, 
               storage: Storage) {
 
+    this.inventory = new Inventory(new Array<InventoryItem>());
+
     storage.get("inventory").then((inventory) => {
-      this.inventory =  inventory;
+      var invent = new Inventory(inventory.items);
+      this.inventory = invent;
       console.log(this.inventory);
     });
 
