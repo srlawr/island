@@ -1,0 +1,24 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Item</ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="closeModal()">Close</button>
+      </ion-buttons>
+    </ion-navbar>
+
+  </ion-header>
+
+  <ion-content padding>
+
+    <p>This is {{ itemName }} </p>
+
+    <span *ngFor="let action of actions" (click)="doit($event, resource)">
+  
+        <span>
+          {{ action.actionname }}
+        </span>
+    
+    </span>
+    
+  </ion-content>

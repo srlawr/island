@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { Tile } from '../../app/models/tile';
 import { TileResource } from '../../app/models/tileResource';
 import { Inventory } from '../../app/models/inventory';
+import { InventoryPage } from '../inventory/inventory';
+
 
 @IonicPage()
 @Component({
@@ -62,8 +64,12 @@ export class TileModalPage {
     }
   }
 
+  public showInventory() {
+    this.navCtrl.push(InventoryPage);
+  }
+
   public closeModal(){
-      this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss();
   }
 
 }

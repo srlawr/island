@@ -7,6 +7,7 @@ import { Home } from '../pages/home/home';
 import { Island } from '../pages/island/island';
 import { TileModalPage } from '../pages/tile-modal/tile-modal';
 import { InventoryPage } from '../pages/inventory/inventory';
+import { ItemDetailsPage } from '../pages/item-details/item-details';
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
@@ -18,7 +19,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Home,
     Island,
     TileModalPage,
-    InventoryPage
+    InventoryPage,
+    ItemDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Home,
     Island,
     TileModalPage,
-    InventoryPage
+    InventoryPage,
+    ItemDetailsPage
   ],
   providers: [
     ScreenOrientation,

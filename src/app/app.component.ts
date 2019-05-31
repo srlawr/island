@@ -6,9 +6,11 @@ import { Storage } from '@ionic/storage';
 import { Tile } from '../app/models/tile';
 import { Inventory } from '../app/models/inventory';
 import { InventoryItem } from '../app/models/inventoryItem';
+import { ItemAction } from '../app/models/itemAction';
 
 
 import { Home } from '../pages/home/home';
+import { ItemActionsPage } from '../pages/item-actions/item-actions';
 //import { Island } from '../pages/island/island';
 
 @Component({
@@ -69,6 +71,8 @@ export class MyApp {
                                 "43": new Tile('23', 4, 3, 'jetty', []),
                                 "44": new Tile('24', 5, 3, 'beach', [])
                               });
+
+          storage.set('itemactions', { 'wood' : [ new ItemAction('break',['tinder','tinder']) ] } );
 
           storage.set("inventory", new Inventory(new Array<InventoryItem>()));
         }

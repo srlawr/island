@@ -2,15 +2,17 @@ import { InventoryItem } from './inventoryItem';
 
 export class Inventory {
 
-    constructor(public items: InventoryItem[]){
+    public items: InventoryItem[];
 
+    constructor(items: InventoryItem[]){
+        this.items = items;
     }
 
     public addOne(item: string): void {
 
         let existed: boolean;
         existed = false;
-
+        
         for(let thisItem of this.items) {
             if(thisItem.item === item) {
                 existed = true;

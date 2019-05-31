@@ -4,13 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { Inventory } from '../../app/models/inventory';
 import { InventoryItem } from '../../app/models/inventoryItem';
-
-/**
- * Generated class for the TileModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ItemDetailsPage } from '../item-details/item-details';
 
 @IonicPage()
 @Component({
@@ -28,6 +22,7 @@ export class InventoryPage {
               storage: Storage) {
 
     this.inventory = new Inventory(new Array<InventoryItem>());
+    this.storage = storage;
 
     storage.get("inventory").then((inventory) => {
       var invent = new Inventory(inventory.items);
@@ -35,6 +30,10 @@ export class InventoryPage {
       console.log(this.inventory);
     });
 
+  }
+
+  public showItem(itemName : string) {
+    this.navCtrl.push(ItemDetailsPage, { itemName : itemName });
   }
 
   public closeModal(){
