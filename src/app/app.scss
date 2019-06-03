@@ -30,6 +30,17 @@
    }
  }
 
+.islandTile:before{
+	content: "";
+	display: block;
+	padding-top: 50%;
+}
+.islandTile {
+  width: 20%;
+  display: inline-block;
+  position: relative;
+}
+
 .itemBox {
   height: 64px;
   width: 64px;

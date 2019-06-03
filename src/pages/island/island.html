@@ -10,7 +10,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-3 class="turnCol">
+      <ion-col col-5 class="turnCol">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -39,14 +39,14 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col col-9 class="mapCol">
-        <ion-grid>
-          <ion-row *ngFor="let row of rowsControl">
-            <ion-col *ngFor="let cell of colsControl" (click)="tileTapped($event, island[row+''+cell]); openTileModal(island[row+''+cell])" class="mapCell">
+      <ion-col col-7 class="mapCol">
+        <div>
+          <div *ngFor="let row of rowsControl">
+            <div *ngFor="let cell of colsControl" (click)="tileTapped($event, island[row+''+cell]); openTileModal(island[row+''+cell])" ngClass="mapCell islandTile {{island[row+''+cell].type}}">
               {{ island[row+''+cell].type }}
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+            </div>
+          </div>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
