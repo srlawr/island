@@ -8,6 +8,23 @@ export class Inventory {
         this.items = items;
     }
 
+    public getQty(item: string): number {
+        for(let thisItem of this.items) {
+            if(thisItem.item === item) {
+                return thisItem.qty;
+            }
+        }
+        return 0;
+    }
+
+    public removeOne(item: string): void {
+        for(let thisItem of this.items) {
+            if(thisItem.item === item) {
+                thisItem.qty--;
+            }
+        }
+    }
+
     public addOne(item: string): void {
 
         let existed: boolean;

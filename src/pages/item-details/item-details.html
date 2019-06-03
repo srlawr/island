@@ -11,12 +11,17 @@
 
   <ion-content padding>
 
-    <p>This is {{ itemName }} </p>
+    <p>This is {{ itemName }}, you have {{ itemQty }} </p>
 
-    <span *ngFor="let action of actions" (click)="doit($event, resource)">
+    <span *ngFor="let action of actions" (click)="doit($event, action)">
   
-        <span>
-          {{ action.actionname }}
+        <div ngClass="actionBox">
+          {{ action.actionname }}   
+          
+        </div>
+        >> 
+        <span *ngFor="let thing of action.outcomes" ngClass="actionOutcomeBox">
+          {{ thing }}
         </span>
     
     </span>

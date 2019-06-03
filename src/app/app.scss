@@ -29,3 +29,36 @@
      }
    }
  }
+
+.itemBox {
+  height: 64px;
+  width: 64px;
+  border: 1px solid #909090;
+  background: #D0D0D0;
+  margin: 5px;
+  padding: 1px;
+  display: inline-block;
+}
+ .rope {
+   background: rgba(136, 73, 2, 0.795);
+ }
+
+ .actionBox {
+  height: 64px;
+  width: 64px;
+  border: 1px solid #9F9090;
+  background: #DF9090;
+  margin: 5px;
+  padding: 1px;
+  display: inline-block;
+}
+
+.actionOutcomeBox {
+  height: 64px;
+  width: 64px;
+  border: 1px solid #9F9090;
+  background: #DF9090;
+  margin: 5px;
+  padding: 1px;
+  display: inline-block;
+}

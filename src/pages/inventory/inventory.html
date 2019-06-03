@@ -21,7 +21,7 @@
   <p>What you got?</p>
   
   <span *ngFor="let resource of inventory.items" >
-    <div (click)="showItem(resource.item)">
+    <div *ngIf="resource.qty > 0" (click)="showItem(resource.item)" ngClass="itemBox {{resource.item}}">
       {{ resource.item }} ({{ resource.qty }})
     </div>
   </span>

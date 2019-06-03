@@ -41,7 +41,7 @@ export class MyApp {
 
           console.log("data setup");
 
-          storage.set('grid', { "00": new Tile('00', 0, 0, 'beach', [ { item : 'wood', qty : 2 }, { item : 'tinder', qty : 5 } ]),
+          storage.set('grid', { "00": new Tile('00', 0, 0, 'beach', [ { item : 'wood', qty : 4 }, { item : 'tinder', qty : 5 }, { item : 'vine', qty : 3 } ]),
                                 "01": new Tile('01', 0, 1, 'beach', [ { item : 'vine', qty : 8 } ]),
                                 "02": new Tile('02', 0, 2, 'beach', [ { item : 'sand', qty : 1000 }, { item : 'salt', qty : 1000 } ]),
                                 "03": new Tile('03', 0, 3, 'beach', [ { item : 'wood', qty :3 } ]),
@@ -72,7 +72,10 @@ export class MyApp {
                                 "44": new Tile('24', 5, 3, 'beach', [])
                               });
 
-          storage.set('itemactions', { 'wood' : [ new ItemAction('break',['tinder','tinder']) ] } );
+          storage.set('itemactions', { 'wood' : [ new ItemAction('break',['tinder','tinder']) ],
+                                       'vine' : [ new ItemAction('wrap', ['rope']) ]  
+                                     }
+                      );
 
           storage.set("inventory", new Inventory(new Array<InventoryItem>()));
         }

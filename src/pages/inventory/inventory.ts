@@ -33,7 +33,8 @@ export class InventoryPage {
   }
 
   public showItem(itemName : string) {
-    this.navCtrl.push(ItemDetailsPage, { itemName : itemName });
+    var itemQty = this.inventory.getQty(itemName);
+    this.navCtrl.push(ItemDetailsPage, { itemName : itemName, itemQty : itemQty });
   }
 
   public closeModal(){
