@@ -13,17 +13,30 @@
 
     <p>This is {{ itemName }}, you have {{ itemQty }} </p>
 
-    <span *ngFor="let action of actions" (click)="doit($event, action)">
+    <div *ngIf="itemQty > 0">
+      <span *ngFor="let action of actions" (click)="doit($event, action)">
+    
+          <div ngClass="actionBox">
+            {{ itemName }}
+          </div>
+          >> {{ action.actionname }}  >>
+          <span *ngFor="let thing of action.outcomes" ngClass="actionOutcomeBox">
+            {{ thing }}
+          </span>
+      
+      </span>
+    </div>
+
+    <span *ngFor="let recipe of recipes" (click)="cookit($event, recipe)">
   
-        <div ngClass="actionBox">
-          {{ action.actionname }}   
-          
-        </div>
-        >> 
-        <span *ngFor="let thing of action.outcomes" ngClass="actionOutcomeBox">
-          {{ thing }}
-        </span>
-    
-    </span>
-    
+      <span *ngFor="let thing of recipe.ingredients" ngClass="actionOutcomeBox">
+        {{ thing }}
+      </span>
+      >> {{ recipe.recipeName }} >>
+      <span *ngFor="let thing of recipe.outcomes" ngClass="actionOutcomeBox">
+        {{ thing }}
+      </span>
+  
+  </span>
+
   </ion-content>

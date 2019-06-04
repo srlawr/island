@@ -9,6 +9,8 @@ import { TileModalPage } from '../pages/tile-modal/tile-modal';
 import { InventoryPage } from '../pages/inventory/inventory';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 
+import { Inventory } from './services/inventory';
+
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -40,7 +42,8 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   providers: [
     ScreenOrientation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Inventory
   ]
 })
 export class AppModule {}

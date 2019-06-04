@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { TileModalPage } from '../tile-modal/tile-modal';
 import { InventoryPage } from '../inventory/inventory';
-import { ModalController } from 'ionic-angular';
+import { Inventory } from '../../app/services/inventory';
 
 @Component({
   selector: 'island',
@@ -21,8 +21,8 @@ export class Island {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public modalCtrl : ModalController,
-              storage: Storage) {
+              storage: Storage,
+              public inventory: Inventory) {
 
     storage.get('grid').then((val) => {
       this.island = val;
@@ -31,6 +31,12 @@ export class Island {
       this.colsControl = [0, 1, 2, 3, 4];
     });
 
+    storage.get("inventory").then((inventory) => {
+      this.inventory.setContents(inventory.items);
+      console.log(this.inventory);
+    });
+
+    inventory.imhere();
   }
 
   tileTapped(event, tile) {
@@ -39,9 +45,6 @@ export class Island {
   }
 
   public openTileModal(tile) { 
-    //var modalPage = this.modalCtrl.create(TileModalPage, { tiledata : tile });
-    //modalPage.present();
-    //console.log("pushing page");
     this.navCtrl.push(TileModalPage, { tiledata : tile });
   }
 

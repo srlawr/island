@@ -4,13 +4,17 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Storage } from '@ionic/storage';
 
 import { Tile } from '../app/models/tile';
-import { Inventory } from '../app/models/inventory';
+import { Inventory } from '../app/services/inventory';
 import { InventoryItem } from '../app/models/inventoryItem';
 import { ItemAction } from '../app/models/itemAction';
 
 
 import { Home } from '../pages/home/home';
 import { ItemActionsPage } from '../pages/item-actions/item-actions';
+
+import { Cookbook } from './services/cookbook';
+import { Recipe } from './models/recipe';
+
 //import { Island } from '../pages/island/island';
 
 @Component({
@@ -73,11 +77,19 @@ export class MyApp {
                               });
 
           storage.set('itemactions', { 'wood' : [ new ItemAction('break',['tinder','tinder']) ],
-                                       'vine' : [ new ItemAction('wrap', ['rope']) ]  
+                                       'vine' : [ new ItemAction('wrap', ['rope']) ],
+                                       'log'  : [ new ItemAction('smash',['wood','wood','tinder'] )]  
                                      }
                       );
 
-          storage.set("inventory", new Inventory(new Array<InventoryItem>()));
+          storage.set("inventory", new Inventory());
+
+          var recipes = new Array<Recipe>();
+
+          recipes.push(new Recipe("bind", ["wood", "wood","rope"], ["log"]));
+
+          storage.set("cookbook", new Cookbook(recipes));
+
         }
 
       });
@@ -95,4 +107,3 @@ export class MyApp {
   }
 
 }
-

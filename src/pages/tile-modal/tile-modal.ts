@@ -5,8 +5,9 @@ import { Storage } from '@ionic/storage';
 
 import { Tile } from '../../app/models/tile';
 import { TileResource } from '../../app/models/tileResource';
-import { Inventory } from '../../app/models/inventory';
+import { Inventory } from '../../app/services/inventory';
 import { InventoryPage } from '../inventory/inventory';
+import { InventoryPageModule } from '../inventory/inventory.module';
 
 
 @IonicPage()
@@ -25,7 +26,8 @@ export class TileModalPage {
   constructor(public navCtrl: NavController, 
               public viewCtrl : ViewController, 
               public navParams: NavParams,
-              storage: Storage) {
+              storage: Storage,
+              public inventory: Inventory) {
 
     storage.get("grid").then((loadedGrid) => {
       this.grid =  loadedGrid;
@@ -47,20 +49,16 @@ export class TileModalPage {
     console.log('Picked up', resource.item);
 
     if(resource.qty > 0) {
-      this.storage.get('inventory').then((inventory: Inventory) => {
    
-        var invent = new Inventory(inventory.items);
-        
-        invent.addOne(resource.item);
+        this.inventory.addOne(resource.item);
         resource.qty--;
 
-        this.storage.set('inventory', invent);
+        this.storage.set('inventory', this.inventory);
         
         this.grid[this.tiledata.x+''+this.tiledata.y] = this.tiledata;
         this.storage.set('grid', this.grid);
 
-        console.log(invent);
-      });
+        console.log(this.inventory);
     }
   }
 

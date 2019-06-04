@@ -1,11 +1,21 @@
-import { InventoryItem } from './inventoryItem';
+import { InventoryItem } from '../models/inventoryItem';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class Inventory {
 
     public items: InventoryItem[];
 
-    constructor(items: InventoryItem[]){
+    constructor(){ 
+        this.items = new Array<InventoryItem>();
+    }
+
+    public setContents(items: InventoryItem[]) {
         this.items = items;
+    }
+
+    public imhere(): void {
+        console.log("it's smee");
     }
 
     public getQty(item: string): number {
