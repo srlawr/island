@@ -18,6 +18,7 @@ export class ItemDetailsPage {
 
     public itemName : string;
     public itemQty : number;
+    public itemDescription : string;
     public actions : ItemAction[];
     public recipes : Recipe[];
 
@@ -30,6 +31,7 @@ export class ItemDetailsPage {
 
       this.itemName = this.navParams.get('itemName');
       this.itemQty = this.navParams.get('itemQty');
+      this.itemDescription = inventory.getDescription(this.itemName);
 
       storage.get('itemactions').then((actions) => {
         this.actions = actions[this.itemName];
@@ -86,6 +88,7 @@ export class ItemDetailsPage {
       }
       // re-evaluate valid recipes
       this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
+
       // save the new inventory contents
       this.storage.set("inventory", this.inventory);
     }

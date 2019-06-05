@@ -13,6 +13,8 @@
 
     <p>This is {{ itemName }}, you have {{ itemQty }} </p>
 
+    <p>{{ itemDescription }}</p>
+
     <div *ngIf="itemQty > 0">
       <span *ngFor="let action of actions" (click)="doit($event, action)">
     

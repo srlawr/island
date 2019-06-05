@@ -5,9 +5,11 @@ import { Injectable } from '@angular/core';
 export class Inventory {
 
     public items: InventoryItem[];
+    public itemBook: {};
 
-    constructor(){ 
+    constructor(itemBook: {}){ 
         this.items = new Array<InventoryItem>();
+        this.itemBook = itemBook;
     }
 
     public setContents(items: InventoryItem[]) {
@@ -21,6 +23,10 @@ export class Inventory {
             }
         }
         return 0;
+    }
+
+    public getDescription(item: string): string {
+        return this.itemBook[item].description;
     }
 
     public removeOne(item: string): void {
