@@ -40,10 +40,9 @@
         </ion-grid>
       </ion-col>
       <ion-col col-7 class="mapCol">
-        <div>
-          <div *ngFor="let row of rowsControl">
-            <div *ngFor="let cell of colsControl" (click)="tileTapped($event, island[row+''+cell]); openTileModal(island[row+''+cell])" ngClass="mapCell islandTile {{island[row+''+cell].type}}">
-              {{ island[row+''+cell].type }}
+        <div style="padding:0; margin:0; overflow:hidden;">
+          <div *ngFor="let row of rowsControl" style="padding:0; margin:0; overflow:hidden;">
+            <div *ngFor="let cell of colsControl" (click)="tileTapped($event, island[row+''+cell]); openTileModal(island[row+''+cell])" ngClass="{{'z'+row+''+cell}} mapCell islandTile {{island[row+''+cell].type}}">
             </div>
           </div>
         </div>

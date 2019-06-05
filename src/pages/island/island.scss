@@ -3,13 +3,30 @@
     text-align: center;
 }
 
+.mapCell.z00.beach {
+    background-image: url('../../assets/imgs/tiles/beach-tl.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.mapCell.z04 {
+
+}
+
+.mapCell.z40 {
+    
+}
+
+.mapCell.z44.beach {
+    background-image: url('../../assets/imgs/tiles/beach-br.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .mapCell {
     border: 1px solid grey;
 }
 
-.beach {
-    background-color: #dae07a;
-}
 
 .woods {
     background-color: #00962d;
