@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { Inventory } from '../../app/services/inventory';
-import { InventoryItem } from '../../app/models/inventoryItem';
 import { ItemDetailsPage } from '../item-details/item-details';
 
 @IonicPage()
@@ -14,15 +12,11 @@ import { ItemDetailsPage } from '../item-details/item-details';
 
 export class InventoryPage {
 
-  private storage: any;
-
   constructor(public navCtrl: NavController, 
               public viewCtrl : ViewController, 
-              storage: Storage,
               public inventory: Inventory) {
 
-    this.storage = storage;
-
+                console.log("its", inventory);
   }
 
   public showItem(itemName : string) {

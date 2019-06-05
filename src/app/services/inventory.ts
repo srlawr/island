@@ -7,13 +7,17 @@ export class Inventory {
     public items: InventoryItem[];
     public itemBook: {};
 
-    constructor(itemBook: {}){ 
+    constructor(){ 
         this.items = new Array<InventoryItem>();
-        this.itemBook = itemBook;
     }
 
     public setContents(items: InventoryItem[]) {
         this.items = items;
+    }
+
+    /* @TODO not over the moon with this having to be set */
+    public setItemBook(itemBook: {}) {
+        this.itemBook = itemBook;
     }
 
     public getQty(item: string): number {

@@ -33,7 +33,7 @@ export class Island {
 
     storage.get("inventory").then((inventory) => {
       this.inventory.setContents(inventory.items);
-      console.log(this.inventory);
+      this.inventory.setItemBook(inventory.itemBook);
     });
 
   }

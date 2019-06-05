@@ -5,17 +5,13 @@ import { Storage } from "@ionic/storage";
 
 import { Tile } from "../app/models/tile";
 import { Inventory } from "../app/services/inventory";
-import { InventoryItem } from "../app/models/inventoryItem";
 import { ItemAction } from "../app/models/itemAction";
 
-
 import { Home } from "../pages/home/home";
-import { ItemActionsPage } from "../pages/item-actions/item-actions";
 
 import { Cookbook } from "./services/cookbook";
 import { Recipe } from "./models/recipe";
-
-//import { Island } from "../pages/island/island";
+import { InventoryPageModule } from "../pages/inventory/inventory.module";
 
 @Component({
   templateUrl: "app.html"
@@ -77,8 +73,8 @@ export class MyApp {
                               });
 
           var itemBook = { "wood" : { "description" : "This is a very useful, broad collection of wood. It can be burnt (once added to a firepit) or bound, broken and combined with any number of other things to make useful tools and artifacts." },
-                          "vine" : { "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
-                          "log" : { "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood." }
+                           "vine" : { "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
+                           "log" : { "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood." }
                           };
 
           storage.set("itembook", itemBook);
@@ -89,7 +85,9 @@ export class MyApp {
                                      }
                       );
 
-          storage.set("inventory", new Inventory(itemBook));
+          var inventory = new Inventory();
+          inventory.setItemBook(itemBook);
+          storage.set("inventory", inventory);
 
           var recipes = new Array<Recipe>();
 
