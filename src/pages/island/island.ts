@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 
 import { TileModalPage } from '../tile-modal/tile-modal';
 import { InventoryPage } from '../inventory/inventory';
+import { JettyPage } from '../jetty/jetty';
+
 import { Inventory } from '../../app/services/inventory';
 
 @Component({
@@ -38,13 +40,12 @@ export class Island {
 
   }
 
-  tileTapped(event, tile) {
-    console.log("You tapped " + tile.id);
-    
-  }
-
   public openTileModal(tile) { 
-    this.navCtrl.push(TileModalPage, { tiledata : tile });
+    if(tile.type === "jetty") {
+      this.navCtrl.push(JettyPage, {  });
+    } else {
+      this.navCtrl.push(TileModalPage, { tiledata : tile });
+    }
   }
 
   public showInventory() {

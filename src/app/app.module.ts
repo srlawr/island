@@ -8,6 +8,7 @@ import { Island } from '../pages/island/island';
 import { TileModalPage } from '../pages/tile-modal/tile-modal';
 import { InventoryPage } from '../pages/inventory/inventory';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { JettyPage } from '../pages/jetty/jetty';
 
 import { Inventory } from './services/inventory';
 
@@ -22,7 +23,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Island,
     TileModalPage,
     InventoryPage,
-    ItemDetailsPage
+    ItemDetailsPage,
+    JettyPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Island,
     TileModalPage,
     InventoryPage,
-    ItemDetailsPage
+    ItemDetailsPage,
+    JettyPage
   ],
   providers: [
     ScreenOrientation,
