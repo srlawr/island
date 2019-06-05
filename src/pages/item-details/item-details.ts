@@ -62,6 +62,10 @@ export class ItemDetailsPage {
         }
 
       }
+
+      // re-evaluate valid recipes
+      this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
+
       this.storage.set("inventory", this.inventory);
     }
 
