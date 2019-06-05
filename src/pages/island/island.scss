@@ -1,32 +1,102 @@
-.turnCol, 
-.mapCol {
+.turnCol {
     text-align: center;
 }
 
-.mapCell.z00.beach {
-    background-image: url('../../assets/imgs/tiles/beach-tl.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-.mapCell.z04 {
-
-}
-
-.mapCell.z40 {
+.islandrow {
     
 }
 
+.islandTile:before{
+	content: "";
+	display: block;
+    padding-bottom: 50%;
+}
+.islandTile {
+  width: 20%;
+  display: inline-block;
+  position: relative;
+}
+
+.mapCell {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mapCell.z00 {
+    background-position: bottom right;
+}
+.mapCell.z00.beach {
+    background-image: url('../../assets/imgs/tiles/beach-tl.png');
+}
+.mapCell.z10.beach {
+    background-image: url('../../assets/imgs/tiles/beach-l.png');
+}
+.mapCell.z20.beach {
+    background-image: url('../../assets/imgs/tiles/beach-l.png');
+}
+.mapCell.z30.beach {
+    background-image: url('../../assets/imgs/tiles/beach-l.png');
+}
+.mapCell.z40.beach {
+    background-image: url('../../assets/imgs/tiles/beach-bl.png');
+}
+
+
+.mapCell.z01.beach {
+    background-image: url('../../assets/imgs/tiles/beach-t.png');
+    background-position: bottom center;
+}
+.mapCell.z02.beach {
+    background-image: url('../../assets/imgs/tiles/beach-t.png');
+    background-position: bottom center;
+}
+.mapCell.z03.beach {
+    background-image: url('../../assets/imgs/tiles/beach-t.png');
+    background-position: bottom center;
+}
+
+
+.mapCell.z04 {
+    background-position: bottom left;
+}
+.mapCell.z44 {
+    background-position: top left;
+}
+.mapCell.z04.beach {
+    background-image: url('../../assets/imgs/tiles/beach-tr.png');
+}
+.mapCell.z14.beach {
+    background-image: url('../../assets/imgs/tiles/beach-r.png');
+}
+.mapCell.z24.beach {
+    background-image: url('../../assets/imgs/tiles/beach-r.png');
+}
+.mapCell.z34.beach {
+    background-image: url('../../assets/imgs/tiles/beach-r.png');
+}
 .mapCell.z44.beach {
     background-image: url('../../assets/imgs/tiles/beach-br.png');
-    background-repeat: no-repeat;
-    background-size: contain;
+}
+
+
+.mapCell.z41.beach {
+    background-image: url('../../assets/imgs/tiles/beach-b.png');
+    background-position: top center;
+}
+.mapCell.z42.beach {
+    background-image: url('../../assets/imgs/tiles/beach-b.png');
+    background-position: top center;
+}
+.mapCell.z43.beach {
+    background-image: url('../../assets/imgs/tiles/beach-b.png');
+    background-position: top center;
 }
 
 .mapCell {
     border: 1px solid grey;
+    padding: 0;
+    margin: 0;
 }
-
 
 .woods {
     background-color: #00962d;
