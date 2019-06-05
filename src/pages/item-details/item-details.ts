@@ -21,6 +21,8 @@ export class ItemDetailsPage {
     public actions : ItemAction[];
     public recipes : Recipe[];
 
+    public cookbook : Cookbook;
+
     constructor(public navParams : NavParams,
                 public viewCtrl : ViewController,
                 public storage : Storage,
@@ -34,8 +36,10 @@ export class ItemDetailsPage {
       });
 
       storage.get("cookbook").then((cookbook: Cookbook) => {
-        this.recipes = new Cookbook(cookbook.recipes).recipesForItem(this.itemName);
+        this.cookbook = new Cookbook(cookbook.recipes);
+        this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
       });
+    
 
     }
 
@@ -80,6 +84,9 @@ export class ItemDetailsPage {
         }
 
       }
+      // re-evaluate valid recipes
+      this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
+      // save the new inventory contents
       this.storage.set("inventory", this.inventory);
     }
 

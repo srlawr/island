@@ -36,7 +36,6 @@ export class Island {
       console.log(this.inventory);
     });
 
-    inventory.imhere();
   }
 
   tileTapped(event, tile) {

@@ -14,12 +14,8 @@ export class Inventory {
         this.items = items;
     }
 
-    public imhere(): void {
-        console.log("it's smee");
-    }
-
     public getQty(item: string): number {
-        for(let thisItem of this.items) {
+        for(var thisItem of this.items) {
             if(thisItem.item === item) {
                 return thisItem.qty;
             }
@@ -28,7 +24,7 @@ export class Inventory {
     }
 
     public removeOne(item: string): void {
-        for(let thisItem of this.items) {
+        for(var thisItem of this.items) {
             if(thisItem.item === item) {
                 thisItem.qty--;
             }
@@ -36,8 +32,7 @@ export class Inventory {
     }
 
     public addOne(item: string): void {
-
-        let existed: boolean;
+        var existed: boolean;
         existed = false;
         
         for(let thisItem of this.items) {
