@@ -43,13 +43,14 @@
         <div class="wholeIsland">
           <div ngClass="islandRow" *ngFor="let row of rowsControl">
             <div *ngFor="let cell of colsControl" (click)="openTileModal(island[row+''+cell])"
-                 ngClass="{{'z'+row+''+cell}} mapCell islandTile {{island[row+''+cell].type}}">
+                 ngClass="{{'z'+row+''+cell}} mapCell islandTile {{island[row+''+cell].type}}"
+                 [ngStyle]="{ 'background-image': 'url(../../assets/imgs/tiles/' + island[row+''+cell].type + '-' + (row == 0 ? 't' : '') + (row == 4 ? 'b' : '') + (cell == 0 ? 'l' : '') + (cell == 4 ? 'r' : '') +'.png'+ ')'}">
             </div>
           </div>
         </div>
       </ion-col>
       <ion-col col-1 class="toasts">
-        
+
       </ion-col>
     </ion-row>
   </ion-grid>

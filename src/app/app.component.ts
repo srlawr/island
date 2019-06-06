@@ -51,7 +51,7 @@ export class MyApp {
                                 "11": new Tile("11", 1, 1, "woods", []),
                                 "12": new Tile("12", 1, 2, "woods", []),
                                 "13": new Tile("13", 1, 3, "grass", []),
-                                "14": new Tile("14", 1, 4, "beach", []),
+                                "14": new Tile("14", 1, 4, "cliffs", []),
 
                                 "20": new Tile("10", 2, 0, "beach", []),
                                 "21": new Tile("11", 2, 1, "woods", []),
