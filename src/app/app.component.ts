@@ -76,7 +76,8 @@ export class MyApp {
                            "vine" : { "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
                            "log" : { "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood." },
                            "rope" : { "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
-                           "twine" : { "description" : "A finer, more specific version of rope, useful for crafting smaller items" }
+                           "twine" : { "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
+                           "tinder" : { "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."}
                           };
 
           storage.set("itembook", itemBook);

@@ -2,9 +2,10 @@
     text-align: center;
 }
 
-.islandrow {
-    
+.islandRow {
+    display: flex;
 }
+
 
 .islandTile:before{
 	content: "";
@@ -13,8 +14,8 @@
 }
 .islandTile {
   width: 20%;
-  display: inline-block;
-  position: relative;
+  margin: 0px;
+  padding: 20px;
 }
 
 .mapCell {
@@ -90,6 +91,10 @@
 .mapCell.z43.beach {
     background-image: url('../../assets/imgs/tiles/beach-b.png');
     background-position: top center;
+}
+
+.wholeIsland {
+    border: 1px solid grey;
 }
 
 .mapCell {

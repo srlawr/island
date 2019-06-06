@@ -21,6 +21,8 @@ export class Island {
   selectedItem: any;
   island: {};
 
+  public showIsland: boolean = false;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               storage: Storage,
@@ -31,6 +33,7 @@ export class Island {
       // don't set these until the island has been loaded to stop the grid trying to draw
       this.rowsControl = [0, 1, 2, 3, 4];
       this.colsControl = [0, 1, 2, 3, 4];
+      this.showIsland = true;
     });
 
     storage.get("inventory").then((inventory) => {

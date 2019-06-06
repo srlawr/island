@@ -39,12 +39,17 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col col-7 class="mapCol">
+      <ion-col col-6 class="mapCol">
+        <div class="wholeIsland">
           <div ngClass="islandRow" *ngFor="let row of rowsControl">
             <div *ngFor="let cell of colsControl" (click)="openTileModal(island[row+''+cell])"
                  ngClass="{{'z'+row+''+cell}} mapCell islandTile {{island[row+''+cell].type}}">
             </div>
           </div>
+        </div>
+      </ion-col>
+      <ion-col col-1 class="toasts">
+        
       </ion-col>
     </ion-row>
   </ion-grid>
