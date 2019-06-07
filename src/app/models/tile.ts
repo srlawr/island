@@ -6,5 +6,5 @@ export class Tile {
                 public type: string, public resources: TileResource[]) {
 
     }
-
+    
 }
