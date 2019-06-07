@@ -27,32 +27,36 @@
     background-position: bottom right;
 }
 
-
-.mapCell.z01.beach {
+.mapCell.z01 {
     background-position: bottom center;
 }
-.mapCell.z02.beach {
+.mapCell.z02 {
     background-position: bottom center;
 }
-.mapCell.z03.beach {
+.mapCell.z03 {
     background-position: bottom center;
 }
 
 .mapCell.z04 {
     background-position: bottom left;
 }
-.mapCell.z44 {
-    background-position: top left;
+
+.mapCell.z41 {
+    background-position: top center;
+}
+.mapCell.z42 {
+    background-position: top center;
+}
+.mapCell.z43 {
+    background-position: top center;
 }
 
-.mapCell.z41.beach {
-    background-position: top center;
+.mapCell.z40 {
+    background-position: bottom right;
 }
-.mapCell.z42.beach {
-    background-position: top center;
-}
-.mapCell.z43.beach {
-    background-position: top center;
+
+.mapCell.z44 {
+    background-position: top left;
 }
 
 .wholeIsland {
