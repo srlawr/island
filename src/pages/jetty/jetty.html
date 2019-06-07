@@ -15,5 +15,26 @@
   
     <p>This is the Jetty, where you will build your raft!
     </p>
+
+    <div *ngIf="raftbuilder !== undefined">
+      Your raft is currently made of {{ raftbuilder.raft.logbuild + ' log' + (raftbuilder.raft.logbuild != 1 ? 's' : '') }} <br/>
+      Stability: {{ raftbuilder.raft.stability }} <br/>
+      Carry capacity: {{ raftbuilder.raft.carrycapacity }}
+    </div>
+    
+    <div *ngFor="let action of raftbuildactions" (click)="doit($event, action)">
+  
+      <span *ngFor="let thing of action.ingredients" ngClass="actionOutcomeBox">
+        {{ thing }}
+      </span>
+      >> {{ action.actionName }} >>
+      <span ngClass="actionOutcomeBox">
+        Stability: {{ action.stability >= 0 ? '+' + action.stability : '-' + action.stability }}
+      </span>
+      <span ngClass="actionOutcomeBox">
+        Carry capacity: {{ action.carrycapacity >= 0 ? '+' + action.carrycapacity : '-' + action.carrycapacity }}
+      </span>
+
+    </div>
   
   </ion-content>

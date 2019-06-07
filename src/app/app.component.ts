@@ -12,6 +12,8 @@ import { Home } from "../pages/home/home";
 import { Cookbook } from "./services/cookbook";
 import { Recipe } from "./models/recipe";
 import { InventoryPageModule } from "../pages/inventory/inventory.module";
+import { RaftBuildAction } from "./models/raftBuildAction";
+import { Raft } from "./models/raft";
 
 @Component({
   templateUrl: "app.html"
@@ -41,7 +43,7 @@ export class MyApp {
 
           console.log("data setup");
 
-          storage.set("grid", { "00": new Tile("00", 0, 0, "beach", [ { item : "wood", qty : 4 }, { item : "tinder", qty : 5 }, { item : "vine", qty : 3 } ]),
+          storage.set("grid", { "00": new Tile("00", 0, 0, "beach", [ { item : "log", qty : 4 }, { item : "tinder", qty : 5 }, { item : "rope", qty : 3 } ]),
                                 "01": new Tile("01", 0, 1, "beach", [ { item : "vine", qty : 8 } ]),
                                 "02": new Tile("02", 0, 2, "beach", [ { item : "sand", qty : 1000 }, { item : "salt", qty : 1000 } ]),
                                 "03": new Tile("03", 0, 3, "beach", [ { item : "wood", qty :3 } ]),
@@ -92,7 +94,11 @@ export class MyApp {
 
           var inventory = new Inventory();
           inventory.setItemBook(itemBook);
+          inventory.addOne("log");
+          inventory.addOne("rope");
           storage.set("inventory", inventory);
+
+          storage.set("raft", new Raft());
 
           var recipes = new Array<Recipe>();
 
@@ -100,6 +106,11 @@ export class MyApp {
           recipes.push(new Recipe("bind", ["twine", "twine", "twine"], ["rope"]));
 
           storage.set("cookbook", new Cookbook(recipes));
+
+          storage.set("raftbuildactions", [new RaftBuildAction("Bind logs",  ["log", "rope"], 10,  3),
+                                           new RaftBuildAction("Reinforce bindings", ["rope","rope"], 5, 0)
+                                          ]
+                      );
 
         }
 

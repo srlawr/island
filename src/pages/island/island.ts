@@ -45,7 +45,7 @@ export class Island {
 
   public openTileModal(tile) { 
     if(tile.type === "jetty") {
-      this.navCtrl.push(JettyPage, {  });
+      this.navCtrl.push(JettyPage, { });
     } else {
       this.navCtrl.push(TileModalPage, { tiledata : tile });
     }
