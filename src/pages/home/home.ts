@@ -24,40 +24,28 @@ export class Home {
       
       var islandgenerator = new IslandGenerator();
 
+      var rowsControl = [0, 1, 2, 3, 4];
+      var colsControl = [0, 1, 2, 3, 4];
+      var gridObj = {};
+      
+      for(var row of rowsControl) {
+        for(var col of colsControl) {
+          if(row === 0 || row === 4 || col === 0 || col === 4) {
+            console.log("coast");
+            gridObj[row+''+col] = islandgenerator.generatecoasttile(row, col);
+          } else {
+            gridObj[row+''+col] = islandgenerator.generatelandtile(row, col);
+          }
+        }
+      }
+
+      gridObj["22"] = new Tile("12", 2, 2, "hut", []);
+      gridObj["43"] = new Tile("23", 4, 3, "jetty", []);
  
-      this.storage.set("grid", { "00": islandgenerator.generatecoasttile(0, 0),
-                            "01": islandgenerator.generatecoasttile(0, 1),
-                            "02": islandgenerator.generatecoasttile(0, 2),
-                            "03": islandgenerator.generatecoasttile(0, 3),
-                            "04": islandgenerator.generatecoasttile(0, 4),
-                        
-                            "10": islandgenerator.generatecoasttile(1, 0),
-                            "11": islandgenerator.generatelandtile(1, 1),
-                            "12": islandgenerator.generatelandtile(1, 2),
-                            "13": islandgenerator.generatelandtile(1, 3),
-                            "14": islandgenerator.generatecoasttile(1, 4),
-
-                            "20": islandgenerator.generatecoasttile(2, 0),
-                            "21": islandgenerator.generatelandtile(2, 1),
-                            "22": new Tile("12", 2, 2, "hut", []),
-                            "23": islandgenerator.generatelandtile(2, 3),
-                            "24": islandgenerator.generatecoasttile(2, 4),
-
-                            "30": islandgenerator.generatecoasttile(3, 0),
-                            "31": islandgenerator.generatelandtile(3, 1),
-                            "32": islandgenerator.generatelandtile(3, 2),
-                            "33": islandgenerator.generatelandtile(3, 3),
-                            "34": islandgenerator.generatecoasttile(0, 4),
-
-                            "40": islandgenerator.generatecoasttile(4, 0),
-                            "41": islandgenerator.generatecoasttile(4, 1),
-                            "42": islandgenerator.generatecoasttile(4, 2),
-                            "43": new Tile("23", 4, 3, "jetty", []),
-                            "44": islandgenerator.generatecoasttile(4, 4)
-                          });
+      this.storage.set("grid", gridObj);
     });
   }
-
+    
   clearTurnTime() {
     console.log("nuking turntime");
     this.storage.remove('turntime').then((thing) => {
