@@ -33,17 +33,13 @@ export class IslandGenerator {
         for(var property in this.easyland) {
             for(var clicker = 0; clicker < this.easyland[property]; clicker++) {
                 this.landarray.push(property);
-                console.log(property);
             }
         }
         for(var property in this.easycoast) {
             for(var clicker = 0; clicker < this.easycoast[property]; clicker++) {
                 this.coastarray.push(property);
-                console.log(property);
             }
         }
-        console.log(this.landarray[Math.floor(Math.random() * Math.floor(100))]);
-        console.log(this.coastarray[Math.floor(Math.random() * Math.floor(100))]);
     }
 
     public generatelandtile(x: number, y: number): Tile {
