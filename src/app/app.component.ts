@@ -43,12 +43,12 @@ export class MyApp {
 
           console.log("data setup");
 
-          var itemBook = { "wood" : { "description" : "This is a very useful, broad collection of wood. It can be burnt (once added to a firepit) or bound, broken and combined with any number of other things to make useful tools and artifacts." },
-                           "vine" : { "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
-                           "log" : { "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood." },
-                           "rope" : { "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
-                           "twine" : { "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
-                           "tinder" : { "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."}
+          var itemBook = { "wood" : { basecollect : 20, "description" : "This is a very useful, broad collection of wood. It can be burnt (once added to a firepit) or bound, broken and combined with any number of other things to make useful tools and artifacts." },
+                           "vine" : { basecollect : 25, "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
+                           "log" : { basecollect: 90, "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood. Just don't expect to fell a tree quickly, or with your bare hands." },
+                           "rope" : { basecollect: 5, "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
+                           "twine" : { basecollect: 2, "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
+                           "tinder" : { basecollect: 5,  "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."}
                           };
 
           storage.set("itembook", itemBook);
