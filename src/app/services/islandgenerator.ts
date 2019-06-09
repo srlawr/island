@@ -21,7 +21,8 @@ export class IslandGenerator {
                                          { "item" : "long grass", "chance" : 50, "min" : 1, "max" : 2 } ],                                         
                            };
 
-    private coastitems: {} = {"beach" : [ {"item" : "wood", "chance" : 50, "min" : 1, "max" : 2} ],
+    private coastitems: {} = {"beach" : [ {"item" : "wood", "chance" : 50, "min" : 1, "max" : 2},
+                                          {"item" : "scrap metal", "chance" : 100, "min" : 1, "max" : 1} ],
                               "cliffs" : [ {"item" : "rock", "chance" : 100, "min" : 1, "max" : 10} ]
                              };
 

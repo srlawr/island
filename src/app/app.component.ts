@@ -51,9 +51,9 @@ export class MyApp {
                            "tinder" : { basecollect: 5,  "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."},
                            "long grass" : { basecollect: 0, "description" : "" },
                            "clay" : { basecollect: 0, "description" : "" },
-                           "" : { basecollect: 0, "description" : "" },
-                           " " : { basecollect: 0, "description" : "" },                           
-                           "  " : { basecollect: 0, "description" : "" }
+                           "scrap metal" : { basecollect: 10, "description" : "Some rough edged, worked metal." },
+                           "rough axe" : { basecollect: 0, "description" : "A crude chopping device, should make reasonable work of cutting trees and other foilage." },                           
+                           "" : { basecollect: 0, "description" : "" }
                           };
 
           storage.set("itembook", itemBook);
@@ -77,6 +77,7 @@ export class MyApp {
           var recipes = new Array<Recipe>();
 
           recipes.push(new Recipe("bind", ["wood", "wood","rope"], ["log"]));
+          recipes.push(new Recipe("build", ["wood", "scrap metal","twine"], ["rough axe"]));
           recipes.push(new Recipe("bind", ["twine", "twine", "twine"], ["rope"]));
 
           storage.set("cookbook", new Cookbook(recipes));
