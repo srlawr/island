@@ -29,6 +29,10 @@ export class Inventory {
         return 0;
     }
 
+    public getitemdetails(item: string): any {
+        return this.itemBook[item];
+    }
+
     public getDescription(item: string): string {
         return this.itemBook[item].description;
     }

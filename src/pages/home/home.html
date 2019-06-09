@@ -10,9 +10,10 @@
   <!-- https://ionicframework.com/docs/intro/tutorial/project-structure/ -->
   <!-- <button ion-button color="primary" menuToggle>Toggle Menu</button> -->
   <p>
-    Welcome to Island Escape {{name}} . Click the tree to continue your game:
+    Welcome to Island Escape {{gameservice.gameon}} .
   </p>
-  <p>
+  <p *ngIf="gameservice.gameon">
+      Click the tree to continue your game: <br/>
     <img src="/assets/imgs/tree.png" width="100px" (click)="pushPage()" />
   </p>
 
@@ -22,5 +23,10 @@
       New Game
     </button>
   </p>
+
+  <p>
+    <span (click)="clearTurnTime(); refresh();">Nuke turn</span>
+  </p>
+  
 
 </ion-content>

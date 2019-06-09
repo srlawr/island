@@ -54,6 +54,9 @@ export class TileModalPage {
         this.inventory.addOne(resource.item);
         resource.qty--;
 
+        console.log(this.inventory.getitemdetails(resource.item));
+        this.gameservice.addtime(this.inventory.getitemdetails(resource.item).basecollect);
+
         this.storage.set('inventory', this.inventory);
         
         this.grid[this.tiledata.x+''+this.tiledata.y] = this.tiledata;

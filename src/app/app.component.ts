@@ -23,23 +23,23 @@ export class MyApp {
   rootPage:any = Home;
   // pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform, public screenOrientation: ScreenOrientation, public storage: Storage) {
+  constructor(platform: Platform,
+              public screenOrientation: ScreenOrientation, 
+              public storage: Storage) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       //statusBar.styleDefault();
       //splashScreen.hide();
 
-      storage.get("turntime").then((turntime) => {
-        console.log("turntime", turntime);
-        if(turntime !== null) {
+      storage.get("gameservice").then((gameservice) => {
+        console.log("app gs", gameservice);
+        if(gameservice.gameon) {
 
             // we are mid game....
             console.log("Game in progress", storage.get("turntime"), storage.get("grid"));
 
         } else {
-
-          storage.set("turntime", 1);
 
           console.log("data setup");
 
@@ -48,7 +48,12 @@ export class MyApp {
                            "log" : { basecollect: 90, "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood. Just don't expect to fell a tree quickly, or with your bare hands." },
                            "rope" : { basecollect: 5, "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
                            "twine" : { basecollect: 2, "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
-                           "tinder" : { basecollect: 5,  "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."}
+                           "tinder" : { basecollect: 5,  "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."},
+                           "long grass" : { basecollect: 0, "description" : "" },
+                           "clay" : { basecollect: 0, "description" : "" },
+                           "" : { basecollect: 0, "description" : "" },
+                           " " : { basecollect: 0, "description" : "" },                           
+                           "  " : { basecollect: 0, "description" : "" }
                           };
 
           storage.set("itembook", itemBook);
