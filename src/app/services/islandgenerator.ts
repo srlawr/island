@@ -59,7 +59,7 @@ export class IslandGenerator {
     public generatecoasttile(x: number, y: number): Tile {
         var coasttype = this.coastarray[Math.floor(Math.random() * Math.floor(100))];
         var tileinventory = [];
-        for(var thisitem of this.landitems[coasttype]) {
+        for(var thisitem of this.coastitems[coasttype]) {
             if((Math.random() * 100) < thisitem.chance) {
                 var qty = Math.floor(Math.random() * (thisitem.max+1 - thisitem.min) + thisitem.min);
                 if(qty > 0) {

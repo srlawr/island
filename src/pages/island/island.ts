@@ -7,6 +7,7 @@ import { InventoryPage } from '../inventory/inventory';
 import { JettyPage } from '../jetty/jetty';
 
 import { Inventory } from '../../app/services/inventory';
+import { GameService } from '../../app/services/gameservice';
 
 @Component({
   selector: 'island',
@@ -26,7 +27,8 @@ export class Island {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               storage: Storage,
-              public inventory: Inventory) {
+              public inventory: Inventory,
+              public gameservice: GameService) {
 
     storage.get('grid').then((val) => {
       this.island = val;
@@ -44,6 +46,12 @@ export class Island {
   }
 
   public openTileModal(tile) { 
+
+    if(tile.id != this.gameservice.lasttile) {
+      this.gameservice.addtime(15);
+      this.gameservice.lasttile = tile.id;
+    }
+
     if(tile.type === "jetty") {
       this.navCtrl.push(JettyPage, { });
     } else {

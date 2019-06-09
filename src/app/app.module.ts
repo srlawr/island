@@ -11,6 +11,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { JettyPage } from '../pages/jetty/jetty';
 
 import { Inventory } from './services/inventory';
+import { GameService } from './services/gameservice';
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
@@ -46,7 +47,8 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Inventory
+    Inventory,
+    GameService
   ]
 })
 export class AppModule {}

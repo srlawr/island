@@ -6,6 +6,7 @@ import { Island } from '../island/island';
 import { Tile } from '../../app/models/tile';
 
 import { IslandGenerator } from '../../app/services/islandgenerator';
+import { GameService } from '../../app/services/gameservice';
 
 @Component({
   selector: 'home',
@@ -19,8 +20,8 @@ export class Home {
 
 
   startnewgame() {
-    this.storage.remove('turntime').then((thing) => {
-      this.storage.set("turntime", 0);
+    this.storage.remove('gameservice').then((thing) => {
+      this.storage.set("gameservice", new GameService());
       
       var islandgenerator = new IslandGenerator();
 
@@ -44,17 +45,6 @@ export class Home {
  
       this.storage.set("grid", gridObj);
     });
-  }
-    
-  clearTurnTime() {
-    console.log("nuking turntime");
-    this.storage.remove('turntime').then((thing) => {
-      console.log("turn cleared");
-      this.storage.get('turntime').then((tt) => {
-        console.log(tt);
-      });
-    });
-
   }
 
   pushPage(){

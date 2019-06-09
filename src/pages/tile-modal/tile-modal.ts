@@ -8,6 +8,7 @@ import { TileResource } from '../../app/models/tileResource';
 import { Inventory } from '../../app/services/inventory';
 import { InventoryPage } from '../inventory/inventory';
 import { InventoryPageModule } from '../inventory/inventory.module';
+import { GameService } from '../../app/services/gameservice';
 
 
 @IonicPage()
@@ -27,7 +28,8 @@ export class TileModalPage {
               public viewCtrl : ViewController, 
               public navParams: NavParams,
               storage: Storage,
-              public inventory: Inventory) {
+              public inventory: Inventory,
+              public gameservice: GameService) {
 
     storage.get("grid").then((loadedGrid) => {
       this.grid =  loadedGrid;
@@ -36,8 +38,7 @@ export class TileModalPage {
     this.tiledata = this.navParams.get('tiledata');
     this.storage = storage;
 
-    this.resources = this.tiledata.resources;
-
+    this.resources = this.tiledata.resources;    
   }
 
   ionViewDidLoad() {
