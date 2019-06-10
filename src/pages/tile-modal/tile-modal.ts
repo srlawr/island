@@ -38,7 +38,7 @@ export class TileModalPage {
     this.tiledata = this.navParams.get('tiledata');
     this.storage = storage;
 
-    this.resources = this.tiledata.resources;    
+    this.resources = this.inventory.tileresources(this.tiledata.resources);
   }
 
   ionViewDidLoad() {

@@ -14,6 +14,7 @@ import { Recipe } from "./models/recipe";
 import { InventoryPageModule } from "../pages/inventory/inventory.module";
 import { RaftBuildAction } from "./models/raftBuildAction";
 import { Raft } from "./models/raft";
+import { GameService } from "./services/gameservice";
 
 @Component({
   templateUrl: "app.html"
@@ -31,9 +32,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       //statusBar.styleDefault();
       //splashScreen.hide();
-
       storage.get("gameservice").then((gameservice) => {
+        
         console.log("app gs", gameservice);
+        // First time the server/db/game is spun up!
+        if (gameservice === null) {
+          gameservice = new GameService();
+          storage.set("gameservice", gameservice);
+        }
+
         if(gameservice.gameon) {
 
             // we are mid game....
@@ -49,10 +56,11 @@ export class MyApp {
                            "rope" : { basecollect: 5, "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
                            "twine" : { basecollect: 2, "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
                            "tinder" : { basecollect: 5,  "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."},
-                           "long grass" : { basecollect: 0, "description" : "" },
-                           "clay" : { basecollect: 0, "description" : "" },
+                           "long grass" : { basecollect: 15, "description" : "" },
+                           "clay" : { basecollect: 25, "description" : "" },
                            "scrap metal" : { basecollect: 10, "description" : "Some rough edged, worked metal." },
                            "rough axe" : { basecollect: 0, "description" : "A crude chopping device, should make reasonable work of cutting trees and other foilage." },                           
+                           "rock" : { basecollect: 5, "description" : "A large piece of rock, seperated from the earth to become it's own entity. Good for bashing and reshaping things." },
                            "" : { basecollect: 0, "description" : "" }
                           };
 
@@ -62,7 +70,8 @@ export class MyApp {
                                        "vine" : [ new ItemAction("wrap",  ["rope"]), 
                                                   new ItemAction("dry", ["twine", "twine"]) ],
                                        "log"  : [ new ItemAction("smash", ["wood","wood","tinder"] ) ],
-                                       "rope" : [ new ItemAction("split", ["twine", "twine"] ) ]
+                                       "rope" : [ new ItemAction("split", ["twine", "twine"] ) ],
+                                       "rough axe" : [ new ItemAction("dismantle", ["wood", "scrap metal", "tinder"] ) ]
                                      }
                       );
 

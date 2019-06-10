@@ -1,5 +1,6 @@
 import { InventoryItem } from '../models/inventoryItem';
 import { Injectable } from '@angular/core';
+import { TileResource } from '../models/tileResource';
 
 @Injectable()
 export class Inventory {
@@ -33,6 +34,15 @@ export class Inventory {
         return this.itemBook[item];
     }
 
+    public tileresources(items: TileResource[]): {}[] {
+
+        for(var thisitem of items) {
+            Object.assign(thisitem, this.getitemdetails(thisitem.item));
+        }
+
+        return items;
+    }
+    
     public getDescription(item: string): string {
         return this.itemBook[item].description;
     }
