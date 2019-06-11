@@ -14,13 +14,15 @@
 <ion-content padding>
   <h1>{{ gameservice.gettime() }} - At the {{ tiledata.type }}</h1>
 
-  <span *ngFor="let resource of resources" (click)="pickup($event, resource)">
+  <div class="itemarea">
+    <span *ngFor="let resource of resources" (click)="pickup($event, resource)">
 
-    <span ngClass="itemBox {{ resource.qty == 0 ? 'zero' : 'some' }}">
-      {{ resource.item }} ({{ resource.qty }}) <br/>
-      {{ resource.basecollect }} minutes
+        <div ngClass="itembox {{ resource.qty == 0 ? 'zero' : 'some' }}">
+          {{ resource.item }} ({{ resource.qty }})
+          {{ resource.basecollect }} minutes
+        </div>
+
     </span>
-
-  </span>
+  </div>
 
 </ion-content>
