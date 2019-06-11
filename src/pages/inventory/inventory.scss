@@ -1,3 +1,56 @@
 .zero {
     color: #A0A0A0;
 }
+
+.itemarea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.itembox {
+    min-height: 8em;
+    min-width: 14em;
+    border: 1px solid #909090;
+    background-color: #f1f1f1;
+    margin: 5px 10px;
+    padding: 10px;
+    position: relative;
+    background-size: contain;
+  }
+
+.itemqty {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.itemqty .qtylabel {
+    font-size: 0.8em;
+}
+.itemqty .qtyno {
+    font-size: 2em;
+    font-weight: bold;
+}
+.itemname {
+    clear: both;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.itembox .itemname {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.itembox .tool {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+}
+
+.itembox .duration {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}

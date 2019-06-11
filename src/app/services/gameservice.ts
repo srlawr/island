@@ -12,6 +12,7 @@ export class GameService {
     public lasttile: string;
 
     constructor(){ 
+        this.day = 1;
         this.hour = 6;
         this.lasttile = "";
     }

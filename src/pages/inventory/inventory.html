@@ -19,11 +19,21 @@
 <ion-content padding>
 
   <p>What you got?</p>
-  
-  <span *ngFor="let resource of inventory.items" >
-    <div *ngIf="resource.qty > 0" (click)="showItem(resource.item)" ngClass="itemBox {{resource.item}}">
-      {{ resource.item }} ({{ resource.qty }})
-    </div>
-  </span>
+
+  <div class="itemarea">
+    <div *ngFor="let resource of inventory.items" (click)="showItem(resource.item)" ngClass="itemBox {{resource.item}}">
+
+        <div [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + resource.item + '.png' }"
+         ngClass="itembox {{ resource.qty == 0 ? 'zero' : 'some' }}">
+          
+          <span class="itemname">{{resource.item}}</span>
+          <span class="itemqty">
+              <span class="qtylabel">qty: </span>
+              <span class="qtyno">{{resource.qty}}</span>
+            </span>
+        </div>
+
+      </div>
+  </div>
 
 </ion-content>

@@ -15,17 +15,16 @@
 
     <p>{{ itemDescription }}</p>
 
-    <div *ngIf="itemQty > 0">
+    <div *ngIf="itemQty > 0" class="actionarea">
       <span *ngFor="let action of actions" (click)="doit($event, action)">
     
-          <div ngClass="actionBox">
+        <div ngClass="actionbox">
             {{ itemName }}
-          </div>
-          >> {{ action.actionname }}  >>
-          <span *ngFor="let thing of action.outcomes" ngClass="actionOutcomeBox">
+            <span class="actionname">>> {{ action.actionname }}  >></span>
+            <span *ngFor="let thing of action.outcomes" ngClass="actionOutcomeBox">
             {{ thing }}
-          </span>
-      
+            </span>
+        </div>
       </span>
     </div>
 
