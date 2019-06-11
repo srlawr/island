@@ -8,7 +8,7 @@
     justify-content: space-around;
 }
 
-.itembox {
+.itemarea .itembox {
     min-height: 8em;
     min-width: 14em;
     border: 1px solid #909090;
@@ -19,37 +19,37 @@
     background-size: contain;
   }
 
-.itemqty {
+  .itemarea .itembox .itemqty {
     position: absolute;
     bottom: 5px;
     right: 5px;
 }
-.itemqty .qtylabel {
+.itemarea .itembox .itemqty .qtylabel {
     font-size: 0.8em;
 }
-.itemqty .qtyno {
+.itemarea .itembox .itemqty .qtyno {
     font-size: 2em;
     font-weight: bold;
 }
-.itemname {
+.itemarea .itembox .itemname {
     clear: both;
     font-weight: bold;
     text-transform: capitalize;
 }
 
-.itembox .itemname {
+.itemarea .itembox .itemname {
     position: absolute;
     left: 5px;
     top: 5px;
 }
 
-.itembox .tool {
+.itemarea .itembox .tool {
     position: absolute;
     left: 5px;
     bottom: 5px;
 }
 
-.itembox .duration {
+.itemarea .itembox .duration {
     position: absolute;
     right: 5px;
     top: 5px;

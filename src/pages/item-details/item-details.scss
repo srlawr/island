@@ -2,58 +2,66 @@
     color: #A0A0A0;
 }
 
-.actionarea{
+.actionarea {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.actionbox {
+.actionarea .actionbox {
     min-height: 8em;
-    min-width: 14em;
     border: 1px solid #909090;
     background-color: #f1f1f1;
-    margin: 5px 10px;
     padding: 10px;
     position: relative;
-    background-size: contain;
+    display: flex;
   }
 
+.actionarea .actionbox .theaction {
+    white-space: pre;
+}
 
-.actionname {
-    clear: both;
+.actionarea .actionbox .actionname {
     font-weight: bold;
     text-transform: capitalize;
-}
-.actionbox .actionname {
     position: absolute;
     left: 5px;
     top: 5px;
 }
 
-.itemqty {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-.itemqty .qtylabel {
-    font-size: 0.8em;
-}
-.itemqty .qtyno {
-    font-size: 2em;
+.actionarea .actionbox .itemname {
     font-weight: bold;
+    text-transform: capitalize;
+    position: absolute;
+    left: 5px;
+    top: 4em;
 }
 
-
-
-.itembox .tool {
+.actionarea .actionbox .tool {
+    font-weight: bold;
+    text-transform: capitalize;
     position: absolute;
     left: 5px;
     bottom: 5px;
 }
 
-.itembox .duration {
-    position: absolute;
-    right: 5px;
-    top: 5px;
+.theoutcomes {
+    position: relative;
 }
+
+.outcomebox {
+    position: relative;
+    height: 64px;
+    width: 64px;
+    border: 1px solid #9F9090;
+    background: #DF9090;
+    margin: 5px;
+    padding: 1px;
+    display: inline-block;
+  }
+  
+  .outcomeboxname {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }

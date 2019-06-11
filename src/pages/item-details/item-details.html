@@ -19,11 +19,16 @@
       <span *ngFor="let action of actions" (click)="doit($event, action)">
     
         <div ngClass="actionbox">
-            {{ itemName }}
-            <span class="actionname">>> {{ action.actionname }}  >></span>
-            <span *ngFor="let thing of action.outcomes" ngClass="actionOutcomeBox">
-            {{ thing }}
-            </span>
+            <div class="theaction">
+              <span class="itemname">{{ itemName }}</span>
+              <span class="actionname">>> {{ action.actionname }}  >></span>
+              <span class="tool">By hand</span>
+            </div>
+            <div class="theoutcomes">
+              <div *ngFor="let thing of action.outcomes" ngClass="outcomebox">
+                <div class="outcomeboxname">{{ thing }}</div>
+              </div>
+            </div>
         </div>
       </span>
     </div>
