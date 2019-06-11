@@ -71,6 +71,7 @@ export class MyApp {
                                                   new ItemAction("dry", ["twine", "twine"], 60) ],
                                        "log"  : [ new ItemAction("smash", ["wood","wood","tinder"], 120 ) ],
                                        "rope" : [ new ItemAction("split", ["twine", "twine"], 30 ) ],
+                                       "long grass" : [ new ItemAction("plait", ["rope"], 60 ) ],
                                        "rough axe" : [ new ItemAction("dismantle", ["wood", "scrap metal", "tinder"], 45 ) ]
                                      }
                       );
@@ -88,6 +89,7 @@ export class MyApp {
           recipes.push(new Recipe("bind", ["wood", "wood","rope"], ["log"]));
           recipes.push(new Recipe("build", ["wood", "scrap metal","twine"], ["rough axe"]));
           recipes.push(new Recipe("bind", ["twine", "twine", "twine"], ["rope"]));
+          recipes.push(new Recipe("sharpen", ["rough axe", "rock"], ["sharp axe"]));
 
           storage.set("cookbook", new Cookbook(recipes));
 

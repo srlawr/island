@@ -14,35 +14,52 @@
     <p>This is {{ itemName }}, you have {{ itemQty }} </p>
 
     <p>{{ itemDescription }}</p>
-
-    <div *ngIf="itemQty > 0" class="actionarea">
-      <span *ngFor="let action of actions" (click)="doit($event, action)">
     
-        <div ngClass="actionbox">
-            <div class="theaction">
-              <span class="itemname">{{ itemName }}</span>
-              <span class="actionname">>> {{ action.actionname }}  >></span>
-              <span class="tool">By hand</span>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-6 >
+            <h1>Actions</h1>
+            <div *ngIf="itemQty > 0" class="actionarea">
+              <div *ngFor="let action of actions" (click)="doit($event, action)" ngClass="actionbox">
+                    <div ngClass="ingredientbox" 
+                        [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + itemName + '.png' }">
+                      <div class="itemname">{{ itemName }}</div>
+                    </div>
+                    <div class="theaction">
+                      <div class="actionname">>> {{ action.actionname }}  >></div>
+                      <div class="tool">By hand</div>
+                    </div>
+                    <div *ngFor="let thing of action.outcomes" ngClass="outcomebox" 
+                      [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
+                        <div class="outcomeboxname">{{ thing }}</div>
+                    </div>
+                </div>
             </div>
-            <div class="theoutcomes">
-              <div *ngFor="let thing of action.outcomes" ngClass="outcomebox">
-                <div class="outcomeboxname">{{ thing }}</div>
+            <div *ngIf="itemQty === 0" class="actionarea">
+              There are no actions available for this item.
+            </div>
+          </ion-col>
+          <ion-col col-6 >
+            <h1>Combine</h1>
+            <div class="recipearea">
+              <div *ngFor="let recipe of recipes" (click)="cookit($event, recipe)" ngClass="recipebox">
+            
+                <div *ngFor="let thing of recipe.ingredients" ngClass="recipeingredientbox"
+                [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
+                  {{ thing }}
+                </div>
+                <div>
+                 <div class="recipename">>> {{ recipe.recipeName }} >></div>
+                 <div class="tool">By hand</div>
+                </div>
+                <div *ngFor="let thing of recipe.outcomes" ngClass="recipeoutcomebox"
+                [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
+                  {{ thing }}
+                </div>
+            
               </div>
             </div>
-        </div>
-      </span>
-    </div>
-
-    <span *ngFor="let recipe of recipes" (click)="cookit($event, recipe)">
-  
-      <span *ngFor="let thing of recipe.ingredients" ngClass="actionOutcomeBox">
-        {{ thing }}
-      </span>
-      >> {{ recipe.recipeName }} >>
-      <span *ngFor="let thing of recipe.outcomes" ngClass="actionOutcomeBox">
-        {{ thing }}
-      </span>
-  
-  </span>
-
+          </ion-col>
+        </ion-row>
+      </ion-grid>
   </ion-content>
