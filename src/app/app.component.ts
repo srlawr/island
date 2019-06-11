@@ -66,12 +66,12 @@ export class MyApp {
 
           storage.set("itembook", itemBook);
 
-          storage.set("itemactions", { "wood" : [ new ItemAction("break", ["tinder","tinder"]) ],
-                                       "vine" : [ new ItemAction("wrap",  ["rope"]), 
-                                                  new ItemAction("dry", ["twine", "twine"]) ],
-                                       "log"  : [ new ItemAction("smash", ["wood","wood","tinder"] ) ],
-                                       "rope" : [ new ItemAction("split", ["twine", "twine"] ) ],
-                                       "rough axe" : [ new ItemAction("dismantle", ["wood", "scrap metal", "tinder"] ) ]
+          storage.set("itemactions", { "wood" : [ new ItemAction("break", ["tinder","tinder"], 15) ],
+                                       "vine" : [ new ItemAction("wrap",  ["rope"], 60), 
+                                                  new ItemAction("dry", ["twine", "twine"], 60) ],
+                                       "log"  : [ new ItemAction("smash", ["wood","wood","tinder"], 120 ) ],
+                                       "rope" : [ new ItemAction("split", ["twine", "twine"], 30 ) ],
+                                       "rough axe" : [ new ItemAction("dismantle", ["wood", "scrap metal", "tinder"], 45 ) ]
                                      }
                       );
 
