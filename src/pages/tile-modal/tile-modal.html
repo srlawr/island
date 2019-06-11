@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Location {{ tiledata.id }}</ion-title>
+    <ion-title>Location {{tiledata.id}}</ion-title>
     <ion-buttons end>
       <!-- button ion-button (click)="showInventory()">Inventory</button -->
       <button ion-button (click)="closeModal()">Close</button>
@@ -12,14 +12,21 @@
 
 
 <ion-content padding>
-  <h1>{{ gameservice.gettime() }} - At the {{ tiledata.type }}</h1>
+  <h1>{{gameservice.gettime()}} - At the {{tiledata.type}}</h1>
 
   <div class="itemarea">
     <span *ngFor="let resource of resources" (click)="pickup($event, resource)">
 
-        <div ngClass="itembox {{ resource.qty == 0 ? 'zero' : 'some' }}">
-          {{ resource.item }} ({{ resource.qty }})
-          {{ resource.basecollect }} minutes
+        <div [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + resource.item + '.png' }"
+         ngClass="itembox {{ resource.qty == 0 ? 'zero' : 'some' }}">
+          
+          <span class="itemname">{{resource.item}}</span>
+          <span class="tool">By hand</span>
+          <span class="duration">{{resource.basecollect}} minutes</span>
+          <span class="itemqty">
+              <span class="qtylabel">qty: </span>
+              <span class="qtyno">{{resource.qty}}</span>
+            </span>
         </div>
 
     </span>
