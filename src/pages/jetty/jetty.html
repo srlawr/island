@@ -22,19 +22,30 @@
       Carry capacity: {{ raftbuilder.raft.carrycapacity }}
     </div>
     
-    <div *ngFor="let action of raftbuildactions" (click)="doit($event, action)">
-  
-      <span *ngFor="let thing of action.ingredients" ngClass="actionOutcomeBox">
-        {{ thing }}
-      </span>
-      >> {{ action.actionName }} >>
-      <span ngClass="actionOutcomeBox">
-        Stability: {{ action.stability >= 0 ? '+' + action.stability : '-' + action.stability }}
-      </span>
-      <span ngClass="actionOutcomeBox">
-        Carry capacity: {{ action.carrycapacity >= 0 ? '+' + action.carrycapacity : '-' + action.carrycapacity }}
-      </span>
+    <div ngClass="buildarea">
+      <div *ngFor="let action of raftbuildactions" (click)="doit($event, action)" ngClass="buildaction">
+    
+        <div ngClass="buildoutcomes">  
+          <div *ngFor="let thing of action.ingredients" ngClass="buildingredientbox"
+               [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
+            <div class="itemname">{{ thing }}</div>
+          </div>
+        </div>
 
+        <div class="buildactionbox">
+        >> {{ action.actionname }} >>
+        </div>
+
+        <div ngClass="buildoutcomes">
+          <div ngClass="buildoutcomebox">
+            Stability: {{ action.stability >= 0 ? '+' + action.stability : '-' + action.stability }}
+          </div>
+          <div ngClass="buildoutcomebox">
+            Carry capacity: {{ action.carrycapacity >= 0 ? '+' + action.carrycapacity : '-' + action.carrycapacity }}
+          </div>
+        </div>
+
+      </div>
     </div>
   
   </ion-content>

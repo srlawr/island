@@ -19,34 +19,38 @@
         <ion-row>
           <ion-col col-6 >
             <h1>Actions</h1>
-            <div *ngIf="itemQty > 0" class="actionarea">
+            <div *ngIf="actions && actions.length > 0" class="actionarea">
               <div *ngFor="let action of actions" (click)="doit($event, action)" ngClass="actionbox">
                     <div ngClass="ingredientbox" 
                         [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + itemName + '.png' }">
                       <div class="itemname">{{ itemName }}</div>
+                      <div class="itemqty">qty {{ inventory.getQty(itemName) }} </div>
                     </div>
                     <div class="theaction">
                       <div class="actionname">>> {{ action.actionname }}  >></div>
                       <div class="tool">By hand</div>
+                      <div class="actiontime">{{ action.basetime }} minutes</div>
                     </div>
                     <div *ngFor="let thing of action.outcomes" ngClass="outcomebox" 
                       [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
                         <div class="outcomeboxname">{{ thing }}</div>
+                      <div class="itemqty">current: {{ inventory.getQty(thing) }} </div>                        
                     </div>
                 </div>
             </div>
-            <div *ngIf="itemQty === 0" class="actionarea">
+            <div *ngIf="!actions || actions.length === 0" class="actionarea">
               There are no actions available for this item.
             </div>
           </ion-col>
           <ion-col col-6 >
             <h1>Combine</h1>
-            <div class="recipearea">
+            <div *ngIf="recipes && recipes.length > 0" class="recipearea">
               <div *ngFor="let recipe of recipes" (click)="cookit($event, recipe)" ngClass="recipebox">
             
                 <div *ngFor="let thing of recipe.ingredients" ngClass="recipeingredientbox"
                 [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
                   {{ thing }}
+                  <div class="itemqty">qty: {{ inventory.getQty(thing) }} </div>                                          
                 </div>
                 <div>
                  <div class="recipename">>> {{ recipe.recipeName }} >></div>
@@ -55,10 +59,14 @@
                 <div *ngFor="let thing of recipe.outcomes" ngClass="recipeoutcomebox"
                 [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
                   {{ thing }}
+                  <div class="itemqty">current: {{ inventory.getQty(thing) }} </div>                                          
                 </div>
             
               </div>
             </div>
+            <div *ngIf="!recipes || recipes.length === 0" class="recipearea">
+                There is nothing you can combine this with at this time.
+              </div>
           </ion-col>
         </ion-row>
       </ion-grid>
