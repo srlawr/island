@@ -45,16 +45,13 @@ export class Inventory {
         for(var thisitem of items) {
             // set the base time to the "hand time"
             thisitem['playertime'] = thisitem['basecollect'];
-            console.log(thisitem, thisitem['tooling']);
             for(var thistool in thisitem['tooling']) {
-                console.log(thistool);
                 if(thistool === "hand" && !thisitem.possiblecollect) {
                     thisitem.possiblecollect = true;
-                    thisitem['besttool'] = "Your hands"; 
+                    thisitem['besttool'] = "By Hand"; 
                 }
                 for(var eachtool of this.items) {
                     if(thistool === eachtool.item) {
-                        console.log("tool match", thistool, eachtool.item);
                         // if we matched the tool, and it is a better time, apply the modifier and mark as possible
                         thisitem.possiblecollect = true;
                         if(Math.ceil(thisitem['basecollect'] * thisitem['tooling'][thistool]) < thisitem['playertime']) {
@@ -77,16 +74,13 @@ export class Inventory {
         for(var thisaction of actions) {
             // set the base time to the "hand time"
             thisaction.playertime = thisaction.basetime;
-            console.log(thisaction, thisaction.tooling);
             for(var thistool in thisaction.tooling) {
-                console.log(thistool);
                 if(thistool === "hand" && !thisaction.possibleaction) {
                     thisaction.possibleaction = true;
-                    thisaction.besttool = "Your hands"; 
+                    thisaction.besttool = "By Hand"; 
                 }
                 for(var eachtool of this.items) {
                     if(thistool === eachtool.item) {
-                        console.log("tool match", thistool, eachtool.item);
                         // if we matched the tool, and it is a better time, apply the modifier and mark as possible
                         thisaction.possibleaction = true;
                         if(Math.ceil(thisaction.basetime * thisaction.tooling[thistool]) < thisaction.playertime) {

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Survivor } from '../models/survivor';
 
 @Injectable()
 export class GameService {
 
-    public gameon: boolean = false;
+    public survivor: Survivor;
 
-    private day: number = 0;
-    private hour: number = 0;
-    private minute: number = 0;
+    public gameon: boolean;
+
+    public day: number = 0;
+    public hour: number = 0;
+    public minute: number = 0;
 
     public lasttile: string;
 
@@ -15,6 +18,20 @@ export class GameService {
         this.day = 1;
         this.hour = 6;
         this.lasttile = "";
+
+        this.gameon = false;
+        this.survivor = new Survivor();
+    }
+
+    // this is needed because of that thing that getting objects from storage doesn't keep their "type" right
+    public reconsume(gameservice :GameService): GameService {
+        this.survivor = gameservice.survivor;
+        this.gameon = gameservice.gameon;
+        this.day = gameservice.day;
+        this.hour = gameservice.hour;
+        this.minute = gameservice.minute;
+        this.lasttile = gameservice.lasttile;
+        return this;
     }
 
     public gettime(): string {
@@ -33,6 +50,11 @@ export class GameService {
             this.day += Math.floor(this.hour / 24);
             this.hour = this.hour % 24;
         }
+
+        this.survivor.hydration = this.survivor.hydration - (this.survivor.hydrationrate * minutes);
+        this.survivor.energy = this.survivor.energy - (this.survivor.energyrate * minutes);
+        this.survivor.condition = this.survivor.condition - (this.survivor.conditionrate * minutes);
+
     }
 
 }

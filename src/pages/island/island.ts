@@ -26,9 +26,14 @@ export class Island {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              storage: Storage,
+              public storage: Storage,
               public inventory: Inventory,
               public gameservice: GameService) {
+
+    // find out why this provider doesn't survive the page change?!
+    storage.get("gameservice").then((gs) => {
+      this.gameservice = this.gameservice.reconsume(gs);
+    })
 
     storage.get('grid').then((val) => {
       this.island = val;
@@ -50,6 +55,7 @@ export class Island {
     if(tile.id != this.gameservice.lasttile) {
       this.gameservice.addtime(15);
       this.gameservice.lasttile = tile.id;
+      this.storage.set("gameservice", this.gameservice);
     }
 
     if(tile.type === "jetty") {

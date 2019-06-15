@@ -17,17 +17,23 @@ export class Home {
   constructor(public navCtrl: NavController,
               public storage: Storage,
               public gameservice: GameService) {
+
     storage.get("gameservice").then((gs) => {
+      if(gs === null) {
+        gs = new GameService();
+      }
       this.gameservice = gs;
-      console.log("GS", gs);
+      console.log("GS on home init", gs);
     });
+
   }
 
 
   startnewgame() {
     this.storage.remove('gameservice').then((thing) => {
-      this.storage.set("gameservice", new GameService());
       
+      this.gameservice = new GameService();
+
       var islandgenerator = new IslandGenerator();
 
       var rowsControl = [0, 1, 2, 3, 4];
@@ -50,6 +56,7 @@ export class Home {
       this.storage.set("grid", gridObj);
 
       this.gameservice.gameon = true;
+      console.log("storing", this.gameservice);
       this.storage.set("gameservice", this.gameservice);
     });
   }
@@ -58,9 +65,9 @@ export class Home {
     console.log("nuking gameservice");
     
     this.storage.get('gameservice').then((gs) => {
-      console.log(gs);
+      console.log("nuking", gs);
       gs.gameon = false;
-      this.storage.set('gameservice', gs);
+      this.storage.remove('gameservice');
     });
 
   }

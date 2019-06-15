@@ -75,6 +75,7 @@ export class ItemDetailsPage {
         // progress the game clock
         this.gameservice.addtime(resource.playertime);
 
+        this.storage.set("gameservice", this.gameservice);
         this.storage.set("inventory", this.inventory);
       } else {
         console.log("Can't do that");
