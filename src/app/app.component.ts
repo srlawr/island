@@ -50,36 +50,41 @@ export class MyApp {
 
           console.log("data setup");
 
-          var itemBook = { "wood" : { basecollect : 20, "description" : "This is a very useful, broad collection of wood. It can be burnt (once added to a firepit) or bound, broken and combined with any number of other things to make useful tools and artifacts." },
-                           "vine" : { basecollect : 25, "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
-                           "log" : { basecollect: 90, "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood. Just don't expect to fell a tree quickly, or with your bare hands." },
-                           "rope" : { basecollect: 5, "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
-                           "twine" : { basecollect: 2, "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
-                           "tinder" : { basecollect: 5,  "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."},
-                           "long grass" : { basecollect: 15, "description" : "" },
-                           "clay" : { basecollect: 25, "description" : "" },
-                           "scrap metal" : { basecollect: 10, "description" : "Some rough edged, worked metal." },
-                           "rough axe" : { basecollect: 0, "description" : "A crude chopping device, should make reasonable work of cutting trees and other foilage." },                           
-                           "rock" : { basecollect: 5, "description" : "A large piece of rock, seperated from the earth to become it's own entity. Good for bashing and reshaping things." },
-                           "" : { basecollect: 0, "description" : "" }
+          var itemBook = { "wood" : { basecollect : 20, "tooling" : {"hand" : 1}, "description" : "This is a very useful, broad collection of wood. It can be burnt (once added to a firepit) or bound, broken and combined with any number of other things to make useful tools and artifacts." },
+                           "vine" : { basecollect : 25, "tooling" : {"hand" : 1}, "description" : "Whether traditional ivy, or incredible Knot Weed, a fistful of vines can be turned into a number of useful ingredients." },
+                           "log" : { basecollect: 90, "tooling" : { "rough axe": 1, "sharp axe" : 0.75}, "description" : "The cornerstone of raftbuilding really, a solid, floating tube of wood. Just don't expect to fell a tree quickly, or with your bare hands." },
+                           "rope" : { basecollect: 5, "tooling" : {"hand" : 1}, "description" : "The most versitile binding ingredient in the world. Tie things up, tie things down, tie things together. The choice is yours!"},
+                           "twine" : { basecollect: 2, "tooling" : {"hand" : 1}, "description" : "A finer, more specific version of rope, useful for crafting smaller items" },
+                           "tinder" : { basecollect: 5,  "tooling" : {"hand" : 1}, "description" : "A few fistfuls of only the driest, most flammable stuff. Essential to starting a fire."},
+                           "long grass" : { basecollect: 15, "tooling" : {"hand" : 1}, "description" : "" },
+                           "clay" : { basecollect: 25, "tooling" : {"hand" : 1}, "description" : "" },
+                           "scrap metal" : { basecollect: 10, "tooling" : {"hand" : 1}, "description" : "Some rough edged, worked metal." },
+                           "rough axe" : { basecollect: 0, "tooling" : {"hand" : 1}, "description" : "A crude chopping device, should make reasonable work of cutting trees and other foilage." },                           
+                           "rock" : { basecollect: 5, "tooling" : {"hand" : 1}, "description" : "A large piece of rock, seperated from the earth to become it's own entity. Good for bashing and reshaping things." },
+                           "sharp axe" : { basecollect: 0, "tooling" : {"hand" : 1}, "description" : "A sharper, stronger metal axe. Better at chopping, one supposes." },
+                           "" : { basecollect: 0, "tooling" : {}, "description" : "" }
                           };
 
           storage.set("itembook", itemBook);
 
-          storage.set("itemactions", { "wood" : [ new ItemAction("break", ["tinder","tinder"], 15) ],
-                                       "vine" : [ new ItemAction("wrap",  ["rope"], 60), 
-                                                  new ItemAction("dry", ["twine", "twine"], 60) ],
-                                       "log"  : [ new ItemAction("smash", ["wood","wood","tinder"], 120 ) ],
-                                       "rope" : [ new ItemAction("split", ["twine", "twine"], 30 ) ],
-                                       "long grass" : [ new ItemAction("plait", ["rope"], 60 ) ],
-                                       "rough axe" : [ new ItemAction("dismantle", ["wood", "scrap metal", "tinder"], 45 ) ]
+          storage.set("itemactions", { "wood" : [ new ItemAction("break", ["tinder","tinder"], 15, { "hand" : 1, "rough axe" : 0.9, "sharp axe" : 0.5 }) ],
+                                       "vine" : [ new ItemAction("wrap",  ["rope"], 60, { "hand" : 1 }), 
+                                                  new ItemAction("dry", ["twine", "twine"], 120, { "hand" : 1 }) ],
+                                       "log"  : [ new ItemAction("smash", ["wood","wood","tinder"], 240, { "rough axe" : 0.75, "sharp axe" : 0.5 } ) ],
+                                       "rope" : [ new ItemAction("split", ["twine", "twine"], 30, { "hand" : 1 } ),
+                                                  new ItemAction("chop up", ["tinder", "tinder"], 15, { "rough axe" : 0.5, "sharp axe" : 0.25} ) ],
+                                       "long grass" : [ new ItemAction("plait", ["rope"], 60, { "hand" : 1 } ) ],
+                                       "rough axe" : [ new ItemAction("dismantle", ["wood", "scrap metal", "tinder"], 45, { "hand" : 1 } ) ]
                                      }
                       );
 
           var inventory = new Inventory();
           inventory.setItemBook(itemBook);
           inventory.addOne("log");
+          inventory.addOne("wood");
           inventory.addOne("rope");
+          inventory.addOne("scrap metal");
+          inventory.addOne("twine");
           storage.set("inventory", inventory);
 
           storage.set("raft", new Raft());

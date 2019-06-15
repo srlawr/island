@@ -44,8 +44,8 @@ export class Home {
         }
       }
 
-      gridObj["22"] = new Tile("12", 2, 2, "hut", []);
-      gridObj["43"] = new Tile("23", 4, 3, "jetty", []);
+      gridObj["22"] = new Tile("12", 2, 2, "hut", "The hut", []);
+      gridObj["43"] = new Tile("23", 4, 3, "jetty", "The launch site",[]);
  
       this.storage.set("grid", gridObj);
 

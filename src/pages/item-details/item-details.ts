@@ -7,6 +7,7 @@ import { Recipe } from '../../app/models/recipe';
 
 import { Inventory } from '../../app/services/inventory';
 import { Cookbook } from '../../app/services/cookbook';
+import { GameService } from '../../app/services/gameservice';
 
 
 @Component({
@@ -27,19 +28,22 @@ export class ItemDetailsPage {
     constructor(public navParams : NavParams,
                 public viewCtrl : ViewController,
                 public storage : Storage,
-                public inventory: Inventory) {
+                public inventory: Inventory,
+                public gameservice: GameService) {
 
       this.itemName = this.navParams.get('itemName');
       this.itemQty = this.navParams.get('itemQty');
       this.itemDescription = inventory.getDescription(this.itemName);
 
-      storage.get('itemactions').then((actions) => {
-        this.actions = actions[this.itemName];
-      });
-
       storage.get("cookbook").then((cookbook: Cookbook) => {
         this.cookbook = new Cookbook(cookbook.recipes);
         this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
+        
+        storage.get('itemactions').then((actions) => {
+          // add inventory method to add actual processing time (and NaN if impossible?)
+          this.actions = this.inventory.processedactionsforinventory(actions[this.itemName]);
+        });
+
       });
     
 
@@ -50,23 +54,31 @@ export class ItemDetailsPage {
     }
 
     public doit(event, resource) {
-      console.log("doing " + resource.actionname + " to " + this.itemName + "to get", resource.outcomes);
-      this.inventory.removeOne(this.itemName);
-      this.itemQty--;
-      for(var eachOutcome of resource.outcomes) {
-        this.inventory.addOne(eachOutcome);
+      console.log("doing " + resource.actionname + " to " + this.itemName + " to get", resource.outcomes, this.inventory.getQty(resource.itemName));
+      
+      if(resource.possibleaction &&  this.itemQty > 0) {
+        this.inventory.removeOne(this.itemName);
+        this.itemQty--;
+        for(var eachOutcome of resource.outcomes) {
+          this.inventory.addOne(eachOutcome);
 
-        // On the off chance the outcome is also what we are acting on?
-        if(eachOutcome === this.itemName) {
-          this.itemQty++;
+          // On the off chance the outcome is also what we are acting on?
+          if(eachOutcome === this.itemName) {
+            this.itemQty++;
+          }
+
         }
 
+        // re-evaluate valid recipes
+        this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
+
+        // progress the game clock
+        this.gameservice.addtime(resource.playertime);
+
+        this.storage.set("inventory", this.inventory);
+      } else {
+        console.log("Can't do that");
       }
-
-      // re-evaluate valid recipes
-      this.recipes = this.cookbook.viableRecipesForItem(this.itemName, this.inventory);
-
-      this.storage.set("inventory", this.inventory);
     }
 
     public cookit(event, resource) {

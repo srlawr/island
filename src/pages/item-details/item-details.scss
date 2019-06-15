@@ -23,6 +23,11 @@
     justify-content: flex-start;
   }
 
+.actionarea .actionbox.false {
+    color: #A0A0A0;
+    border-color: red;
+}
+
 .actionarea .actionbox .theaction {
     position: relative;
     white-space: pre;
@@ -55,7 +60,7 @@
 .recipeoutcomebox,
 .recipeingredientbox {
     position: relative;
-    height: 4em;
+    height: 6em;
     width: 20%;
     min-width: 7em;
     border: 1px solid #9F9090;

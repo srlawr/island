@@ -1,10 +1,18 @@
 import { Tile } from '../models/tile';
+import { TileResource } from '../models/tileResource';
 
 
 export class IslandGenerator {
 
     private landarray: string[];
     private coastarray: string[];
+
+    private descriptions: {} = {"woods" : "A wooded area",
+                                "grass" : "Some open grass",
+                                "water" : "Some wetlands",
+                                "beach" : "The beach",
+                                "cliffs" : "Some cliffs"
+                                };
 
     private easyland: {} = { "woods" : 40, "grass" : 40, "water" : 20 };
     private easycoast: {} = { "beach" : 90, "cliffs" : 10};
@@ -50,11 +58,11 @@ export class IslandGenerator {
             if((Math.random() * 100) < thisitem.chance) {
                 var qty = Math.floor(Math.random() * (thisitem.max+1 - thisitem.min) + thisitem.min);
                 if(qty > 0) {
-                    tileinventory.push({ item : thisitem.item, qty : qty});
+                    tileinventory.push(new TileResource(thisitem.item, qty));
                 }
             }
         }
-        return new Tile(x+''+y, x, y, landtype, tileinventory);
+        return new Tile(x+''+y, x, y, landtype, this.descriptions[landtype], tileinventory);
     }
 
     public generatecoasttile(x: number, y: number): Tile {
@@ -64,11 +72,11 @@ export class IslandGenerator {
             if((Math.random() * 100) < thisitem.chance) {
                 var qty = Math.floor(Math.random() * (thisitem.max+1 - thisitem.min) + thisitem.min);
                 if(qty > 0) {
-                    tileinventory.push({ item : thisitem.item, qty : qty});
+                    tileinventory.push(new TileResource(thisitem.item, qty));
                 }
             }
         }
-        return new Tile(x+''+y, x, y, coasttype, tileinventory );
+        return new Tile(x+''+y, x, y, coasttype, this.descriptions[coasttype], tileinventory );
     }
 
 }

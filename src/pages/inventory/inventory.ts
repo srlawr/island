@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 
 import { Inventory } from '../../app/services/inventory';
+import { GameService } from '../../app/services/gameservice';
 import { ItemDetailsPage } from '../item-details/item-details';
 
 @IonicPage()
@@ -14,9 +15,19 @@ export class InventoryPage {
 
   constructor(public navCtrl: NavController, 
               public viewCtrl : ViewController, 
-              public inventory: Inventory) {
+              public inventory: Inventory,
+              public gameservice: GameService) {
 
-                console.log("its", inventory);
+              inventory.items.sort(function( a, b ) {
+                                        if ( a.item < b.item ){
+                                          return -1;
+                                        }
+                                        if ( a.item > b.item ){
+                                          return 1;
+                                        }
+                                        return 0;
+                                      });
+              console.log("its", inventory);
   }
 
   public showItem(itemName : string) {

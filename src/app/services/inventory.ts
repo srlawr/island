@@ -1,4 +1,5 @@
 import { InventoryItem } from '../models/inventoryItem';
+import { ItemAction } from '../models/itemAction';
 import { Injectable } from '@angular/core';
 import { TileResource } from '../models/tileResource';
 
@@ -40,11 +41,63 @@ export class Inventory {
             Object.assign(thisitem, this.getitemdetails(thisitem.item));
         }
 
+        // take a player inventory and work out tooling here.
+        for(var thisitem of items) {
+            // set the base time to the "hand time"
+            thisitem['playertime'] = thisitem['basecollect'];
+            console.log(thisitem, thisitem['tooling']);
+            for(var thistool in thisitem['tooling']) {
+                console.log(thistool);
+                if(thistool === "hand" && !thisitem.possiblecollect) {
+                    thisitem.possiblecollect = true;
+                    thisitem['besttool'] = "Your hands"; 
+                }
+                for(var eachtool of this.items) {
+                    if(thistool === eachtool.item) {
+                        console.log("tool match", thistool, eachtool.item);
+                        // if we matched the tool, and it is a better time, apply the modifier and mark as possible
+                        thisitem.possiblecollect = true;
+                        if(Math.ceil(thisitem['basecollect'] * thisitem['tooling'][thistool]) < thisitem['playertime']) {
+                            thisitem['besttool'] = "With " + thistool; 
+                            thisitem['playertime'] = Math.ceil(thisitem['basecollect'] * thisitem['tooling'][thistool]);
+                        }
+                    }
+                }
+            }
+        }
+
         return items;
     }
     
     public getDescription(item: string): string {
         return this.itemBook[item].description;
+    }
+
+    public processedactionsforinventory(actions: ItemAction[]): ItemAction[] {
+        for(var thisaction of actions) {
+            // set the base time to the "hand time"
+            thisaction.playertime = thisaction.basetime;
+            console.log(thisaction, thisaction.tooling);
+            for(var thistool in thisaction.tooling) {
+                console.log(thistool);
+                if(thistool === "hand" && !thisaction.possibleaction) {
+                    thisaction.possibleaction = true;
+                    thisaction.besttool = "Your hands"; 
+                }
+                for(var eachtool of this.items) {
+                    if(thistool === eachtool.item) {
+                        console.log("tool match", thistool, eachtool.item);
+                        // if we matched the tool, and it is a better time, apply the modifier and mark as possible
+                        thisaction.possibleaction = true;
+                        if(Math.ceil(thisaction.basetime * thisaction.tooling[thistool]) < thisaction.playertime) {
+                            thisaction.besttool = "With " + thistool; 
+                            thisaction.playertime = Math.ceil(thisaction.basetime * thisaction.tooling[thistool]);
+                        }
+                    }
+                }
+            }
+        }
+        return actions;
     }
 
     public removeOne(item: string): void {
@@ -53,6 +106,9 @@ export class Inventory {
                 thisItem.qty--;
             }
         }
+        this.items = this.items.filter(function(thisitem) {
+            return thisitem.qty > 0;
+        });
     }
 
     public addOne(item: string): void {

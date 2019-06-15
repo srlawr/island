@@ -1,7 +1,7 @@
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>Item</ion-title>
+    <ion-navbar hideBackButton>
+      <ion-title>{{gameservice.gettime()}} - {{itemName }}</ion-title>
       <ion-buttons end>
         <button ion-button (click)="closeModal()">Close</button>
       </ion-buttons>
@@ -11,7 +11,7 @@
 
   <ion-content padding>
 
-    <p>This is {{ itemName }}, you have {{ itemQty }} </p>
+    <p>{{ itemName }}: You currently have {{ itemQty }} </p>
 
     <p>{{ itemDescription }}</p>
     
@@ -20,7 +20,7 @@
           <ion-col col-6 >
             <h1>Actions</h1>
             <div *ngIf="actions && actions.length > 0" class="actionarea">
-              <div *ngFor="let action of actions" (click)="doit($event, action)" ngClass="actionbox">
+              <div *ngFor="let action of actions" (click)="doit($event, action)" ngClass="actionbox {{action.possibleaction}}">
                     <div ngClass="ingredientbox" 
                         [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + itemName + '.png' }">
                       <div class="itemname">{{ itemName }}</div>
@@ -28,8 +28,9 @@
                     </div>
                     <div class="theaction">
                       <div class="actionname">>> {{ action.actionname }}  >></div>
-                      <div class="tool">By hand</div>
-                      <div class="actiontime">{{ action.basetime }} minutes</div>
+                      <div *ngIf="action.possibleaction" class="tool">{{ action.besttool }}</div>
+                      <div *ngIf="!action.possibleaction" class="tool">NO TOOL!</div>
+                      <div *ngIf="action.possibleaction" class="actiontime">{{ action.playertime }} minutes</div>
                     </div>
                     <div *ngFor="let thing of action.outcomes" ngClass="outcomebox" 
                       [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
@@ -50,7 +51,7 @@
                 <div *ngFor="let thing of recipe.ingredients" ngClass="recipeingredientbox"
                 [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
                   {{ thing }}
-                  <div class="itemqty">qty: {{ inventory.getQty(thing) }} </div>                                          
+                  <div class="itemqty">Currently: {{ inventory.getQty(thing) }} </div>                                          
                 </div>
                 <div>
                  <div class="recipename">>> {{ recipe.recipeName }} >></div>
@@ -59,7 +60,7 @@
                 <div *ngFor="let thing of recipe.outcomes" ngClass="recipeoutcomebox"
                 [ngStyle]="{ 'background-image': 'url(../../assets/imgs/items/' + thing + '.png' }">
                   {{ thing }}
-                  <div class="itemqty">current: {{ inventory.getQty(thing) }} </div>                                          
+                  <div class="itemqty">Currently: {{ inventory.getQty(thing) }} </div>                                          
                 </div>
             
               </div>

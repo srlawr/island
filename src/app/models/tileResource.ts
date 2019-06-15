@@ -1,7 +1,11 @@
 export class TileResource {
 
-    constructor(public item: string, public qty: number ){
+    public playertime: number;
+    public besttool: string;
+    public possiblecollect: boolean;
 
+    constructor(public item: string, public qty: number ){
+        this.possiblecollect = false;
     }
 
 }

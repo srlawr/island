@@ -45,17 +45,14 @@ export class TileModalPage {
     console.log('We are on ', this.navParams.get('tiledata').type);
   }
 
-  public pickup(event, resource) {
+  public pickup(event, resource) {  
+    if(resource.possiblecollect && resource.qty > 0) {
+        console.log('Picked up', resource.item);
 
-    console.log('Picked up', resource.item);
-
-    if(resource.qty > 0) {
-   
         this.inventory.addOne(resource.item);
         resource.qty--;
 
-        console.log(this.inventory.getitemdetails(resource.item));
-        this.gameservice.addtime(this.inventory.getitemdetails(resource.item).basecollect);
+        this.gameservice.addtime(resource.playertime);
 
         this.storage.set('inventory', this.inventory);
         

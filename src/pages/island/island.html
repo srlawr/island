@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-title>Island Escape</ion-title>
+    <ion-title>{{gameservice.gettime()}} - The Island</ion-title>
     <ion-buttons end>
       <button ion-button (click)="showInventory()">Inventory</button>
       </ion-buttons>
@@ -14,7 +14,7 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <h1>{{ gameservice.gettime() }}</h1>
+              <h1></h1>
             </ion-col>
           </ion-row>
           <ion-row>
