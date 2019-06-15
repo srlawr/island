@@ -56,7 +56,6 @@ export class Home {
       this.storage.set("grid", gridObj);
 
       this.gameservice.gameon = true;
-      console.log("storing", this.gameservice);
       this.storage.set("gameservice", this.gameservice);
     });
   }
@@ -65,7 +64,6 @@ export class Home {
     console.log("nuking gameservice");
     
     this.storage.get('gameservice').then((gs) => {
-      console.log("nuking", gs);
       gs.gameon = false;
       this.storage.remove('gameservice');
     });
