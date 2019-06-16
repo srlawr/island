@@ -41,7 +41,9 @@ export class ItemDetailsPage {
         
         storage.get('itemactions').then((actions) => {
           // add inventory method to add actual processing time (and NaN if impossible?)
-          this.actions = this.inventory.processedactionsforinventory(actions[this.itemName]);
+          if(actions[this.itemName] !== undefined) {
+            this.actions = this.inventory.processedactionsforinventory(actions[this.itemName]);
+          }
         });
 
       });
